@@ -104,15 +104,19 @@ In addition, the store website should run under https, SSL. SSL is activated by 
 
 “Payment” page and “Confirm Order” action must be secured so that a login is required and the password is not passed in plain text. The visitor MUST type in their credit card each time.  It should not be stored.
 
-# Performance testing report 
+# Performance Testing Report 
 Conduct a performance test of your application. For this project focus just on one Service (either B or C above). Test your application with 1, 2…N clients. Draw the throughput and the response time curves. N should be chosen such that utilization of the computer is less than 60% Assume 3 seconds “think time” between user requests. An implementation suggestion: you can emulate each client with a thread…record the time the thread sends the request, record the time the thread gets back the response; the difference is the response time. Repeat that for 1, 2…N threads. Check the slides for the general shape of the response time…By response time we mean the average across all clients(threads) 
 
-# team member contributions
+# Team Member Contributions
 In one paragraph, describe how the team worked, how often you met and how you collaborated. Then for each team member, detail the individual contributions in one paragraph/member; also explain how each team member learned about elements of the projects done by other members.  
 
 # Signatures 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Allen Kaplan's Signature")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Damanveer Bharat's Signature")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Jeremy Winkler's Signature")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Conner Ahearn's Signature")
+Allen Kaplan - ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Allen Kaplan's Signature")
+
+Damanveer Bharat - ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Damanveer Bharat's Signature")
+
+Jeremy Winkler - ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Jeremy Winkler's Signature")
+
+Conner Ahearn - ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Conner Ahearn's Signature")
+
 Each member of the team sign the document to attest that team member contributions reflect the reality
