@@ -52,7 +52,9 @@ public class CardShop extends HttpServlet {
 			List<ProductBean> products = shop.retrieveCards();
 			
 			request.setAttribute("products", products);
-			request.getRequestDispatcher("home.jspx").forward(request, response);
+			
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		}
 	}
 
