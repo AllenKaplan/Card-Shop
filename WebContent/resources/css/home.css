@@ -34,6 +34,10 @@
 	width: 33%;
 }
 
+.card:hover {
+	cursor
+}
+
 .image {
 	display: block;
 	width: 50%;
