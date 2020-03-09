@@ -27,7 +27,36 @@
 					filters
 				</div>
 				<div class="content">
-					content
+					<div class="card">
+						<img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452"></img>
+						<p class="card-name">
+							Ruler's Blessing
+						</p>
+					</div>
+					<div class="card">
+						<img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/e/e5/Patch_of_Forest_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202201652"></img>
+						<p class="card-name">
+							Patch of Forest
+						</p>
+					</div>
+					<div class="card">
+						<img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/b/be/Patch_of_Shore_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202204353"></img>
+						<p class="card-name">
+							Plot of Beach
+						</p>
+					</div>
+					<div class="card">
+						<img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/3/3d/Pitcher_of_Eternal_Water_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202205733"></img>
+						<p class="card-name">
+							Pitcher of Eternal Water
+						</p>
+					</div>
+					<div class="card">
+						<img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/c/cf/Skin_Care_Hot_Springs_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202211313"></img>
+						<p class="card-name">
+							Skin Care Hot Springs
+						</p>
+					</div>
 				</div>
 			</div>
 		</body>

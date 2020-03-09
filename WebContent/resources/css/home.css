@@ -19,9 +19,27 @@
 }
 
 .filters {
+	margin: 10px;
 	width: 20%;
 }
 
 .content {
-	width: 20%;
+	width: 80%;
+	margin: 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card {
+	width: 33%;
+}
+
+.image {
+	display: block;
+	width: 50%;
+	margin: auto;
+}
+
+.card-name {
+	text-align: center;
 }
