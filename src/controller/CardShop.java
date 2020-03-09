@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CardShop
  */
-@WebServlet("/CardShop")
+@WebServlet({"/CardShop", "/CardShop/*"})
 public class CardShop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,22 +19,38 @@ public class CardShop extends HttpServlet {
      */
     public CardShop() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		if(request.getRequestURI().contains("cart")) {
+			response.getWriter().append("This is your shopping cart");
+		}
+		
+		else if(request.getRequestURI().contains("payment")) {
+			response.getWriter().append("Make your payment");
+		}
+		
+		else if(request.getRequestURI().contains("analytics")) {
+			response.getWriter().append("Wow, look at these analytics");
+		}
+		
+		else if(request.getRequestURI().contains("login")) {
+			response.getWriter().append("Please log in");
+		}
+		
+		else {
+			response.getWriter().append("Welcome home");
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
