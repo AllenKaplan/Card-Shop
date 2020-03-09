@@ -15,14 +15,20 @@
 		</head>
 		<body>
 			<div class="header">
-				Massadora Card Shop
-				<input type="text"></input>
+				<h2>Massadora Card Shop</h2>
+				<div class="search">
+					<input type="text"></input>
+					<BUTTON>Go</BUTTON>
+				</div>
+				
 			</div>
 			<div class="body">
 				<div class="filters">
-				
+					filters
 				</div>
-				
+				<div class="content">
+					content
+				</div>
 			</div>
 		</body>
 	</html>
