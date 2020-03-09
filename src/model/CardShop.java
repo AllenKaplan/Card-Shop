@@ -6,10 +6,16 @@ import bean.ProductBean;
 import dao.CardDAO;
 
 public class CardShop {
-	private CardDAO card = new CardDAO();
+	private CardDAO card;
 	
 	
 	public CardShop() {
+		try {
+			card = new CardDAO();
+		} catch (Exception e) {
+			
+		}
+		
 	}
 	
 	public List<ProductBean> retrieveCards(){
