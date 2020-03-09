@@ -1,11 +1,17 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bean.CardBean;
+import bean.ProductBean;
 
 /**
  * Servlet implementation class CardShop
@@ -43,7 +49,13 @@ public class CardShop extends HttpServlet {
 		}
 		
 		else {
-			response.getWriter().append("Welcome home");
+			List<ProductBean> products = new ArrayList<>();
+			//Need to imlement model for cardshop; Currently testing with beans directly
+			ProductBean testItem = new CardBean("testName", "testDesc", 420.69, 10, null);
+			products.add(testItem);
+			
+			request.setAttribute("products", products);
+			request.getRequestDispatcher("home.jspx").forward(request, response);
 		}
 	}
 
