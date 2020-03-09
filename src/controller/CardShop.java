@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.CardBean;
 import bean.ProductBean;
 
 /**
@@ -49,10 +48,8 @@ public class CardShop extends HttpServlet {
 		}
 		
 		else {
-			List<ProductBean> products = new ArrayList<>();
-			//Need to imlement model for cardshop; Currently testing with beans directly
-			ProductBean testItem = new CardBean("testName", "testDesc", 420.69, 10, null);
-			products.add(testItem);
+			model.CardShop shop = new model.CardShop();
+			List<ProductBean> products = shop.retrieveCards();
 			
 			request.setAttribute("products", products);
 			request.getRequestDispatcher("home.jspx").forward(request, response);
