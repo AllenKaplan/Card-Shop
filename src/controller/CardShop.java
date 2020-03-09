@@ -43,7 +43,8 @@ public class CardShop extends HttpServlet {
 		}
 		
 		else {
-			response.getWriter().append("Welcome home");
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		}
 	}
 
