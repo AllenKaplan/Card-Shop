@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="EECS4413 Project">
+        
+    <wb-module deploy-name="Card-Shop-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="EECS4413_Project"/>
+                
         <property name="java-output-path" value="/EECS4413 Project/build/classes"/>
+        <property name="context-root" value="Card-Shop"/>
+            
     </wb-module>
+    
 </project-modules>

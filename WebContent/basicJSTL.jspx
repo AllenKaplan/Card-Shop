@@ -5,8 +5,7 @@
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/helloworld.css" />
-			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/helloworld.js">
-			</script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/helloworld.js">;</script>
 			<title>
 				Basic JSTL Usable JSPX File
 			</title>
