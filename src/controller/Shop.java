@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.CardBean;
 import bean.ProductBean;
 import model.CardModel;
 
@@ -33,6 +35,7 @@ public class Shop extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(request.getRequestURI().contains("cart")) {
+			Map<CardBean, Integer> cart = (Map<CardBean, Integer>) request.getSession().getAttribute("cart");
 			response.getWriter().append("This is your shopping cart");
 		}
 		
