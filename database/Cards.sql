@@ -2,7 +2,7 @@ drop table if exists Cards;
 
 create table Cards (
     number int not null,
-    name varchar(20) not null,
+    name varchar(100) not null,
     -- For card 101, Rank/Limit D-70, this field is D
     rank varchar(2) not null,
     -- For card 101, Rank/Limit D-70, this field is 70
