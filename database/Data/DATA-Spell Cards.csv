@@ -1,0 +1,41 @@
+﻿number,name,rank,limit,description,class,spellType
+1001,Peek,G,200,View contents of target players (previously met) free slots.,Spell,LR - RS
+1002,Fluoroscopy,F,150,View contents of target players (previously met) designated slots.,Spell,LR - RS
+1003,Defensive Wall,G,400,Protects you from an attack spell once.,Spell,SR - DS
+1004,Reflect,E,120,Reflects an attack spell from a player (previously met).,Spell,SR - DS
+1005,Magnetic Force,C,50,Allows one person to fly to the location of the target player.,Spell,LR - RS
+1006,Pickpocket,F,170,Steals a random card from target players free pocket.,Spell,SR - AS
+1007,Thief,C,50,Steals a random card from target players designated pocket.,Spell,SR - AS
+1008,Trade,E,100,Swaps a card the casters owns to a target players card randomly.,Spell,SR - AS
+1009,Return,G,380,Allows caster to fly back to a previously visited location.,Spell,LR - RS
+1010,Mimic,A,20,Transform a card into a copy of a target card that the caster already owns (it fails if target cards transformation limits is already exceeded),Spell,SR - RS
+1011,Clone,D,70,"Change into one random card from target players imposed slots (if the opponent has no imposed slot cards or the card limit was at MAX, the transformation fails and Clone disappears).",Spell,SR - RS
+1012,Relegate,F,140,Make the target player fly somewhere on the island.,Spell,SR - RS
+1013,Origin,D,65,Make target player fly to the game starting point.,Spell,SR - RS
+1014,Leave,B,30,Make target player leave the island.,Spell,SR - RS
+1015,Clairvoyance,D,70,See all card data of the target player.,Spell,LR - RS
+1016,Drift,F,200,"Go to a random unvisited town. If all towns have been visited, player stays at the same place and the card disappears).",Spell,SR - RS
+1017,Collision,F,200,"Fly to the locations of a random player the caster has not met (if all other players have been met, players stay at the same place and the card disappears).",Spell,SR - RS
+1018,Levy,B,25,Take one random card from each player within a 20m radius.,Spell,SR - RS
+1019,Drawbridge,F,200,Protect once against a short range regular spell from another player.,Spell,SR - DS - AA - VS
+1020,Fake,C,40,"Fake transforms into one of the cards from No.001 to No.099. The resulting card can be inserted into an imposed slot but does not count towards a complete card set or the card copy limit, nor can it be converted into an object.",Spell,SR - RS
+1021,Mug,B,30,Take one card at will from target player.,Spell,SR - AS
+1022,Corruption,C,40,"Transform one above-B ranked card from target player into a below-D card. The caster can choose the number of the new card. (After the transformation, the card counts towards the card number limit of the new card type. If the limit is already at MAX, or the target player has no above-B cards, the transformation fails and the “Corruption” card disappears). After the transformation, if the card is in an imposed slot with a wrong number, it auto-destroys.",Spell,SR - AS
+1023,Compromise,B,25,"Choose and destroy one above-A ranked card from target player. That player then obtains a card of 3 ranks lower than the destroyed card and of the number of his choosing. If target player has no above-A card, “Compromise” changes into card form again and returns to the caster. (If the designated card of three ranks lower has attained the card copy limit, it cannot be obtained.)",Spell,SR - AS
+1024,Dispel,D,80,"Return all cards from target player transformed with “Fake,” “Clone,” or “Mimic” to original form. Destroy all cards that, as a result, find themselves in the wrong imposed slots. “Fake,” “Copy,” and “Mimic” have no effect on “Dispel.”",Spell,SR - RS
+1025,Blackout Curtain,F,200,Use to protect oneself against the effects of Peek and Fluoroscopy.,Spell,SR - DS - C
+1026,Holy Water,A,20,Protects the player ten times from attack spells from other players. This card is immune to steal and destruction spells.,Spell,SR - DS - C
+1027,Trace,E,90,Current location of one target player will be available at all times. (Effect lasts until player leaves the game.),Spell,SR - AS
+1028,Rock Toss,E,100,Destroy one random card in target players free slots.,Spell,SR - AS
+1029,Bullet,B,25,Destroy one random card in target players imposed slots.,Spell,SR - AS
+1030,Guidepost,E,120,Give away locations of the chosen number (not available to No. 000).,Spell,LR - RS
+1031,Analysis,G,400,Show explanation on card of the chosen number (not available to No. 000).,Spell,LR - RS
+1032,Lottery,G,350,Transform into a random item card.,Spell,SR - RS
+1033,Cling,C,50,Complete data of one players restricted slots will be available at all times. (Effect lasts until player leaves the game.),Spell,SR - AS
+1034,Purify,D,55,"Dispel effect of transformation spell and return card to original form. (If, after transformation, the card limit is exceeded, the card changes to item form and cannot be converted again. In the case of a spell card, it disappears unless the spell is used immediately.)",Spell,SR - RS
+1035,Fortress,S,10,Cards inserted in slots on target page are permanently protected against stealing and destruction spells as long as they remain in the slots (Free Slot pages cannot be chosen).,Spell,SR - DS - C - AA
+1036,Eye of God,S,10,Caster obtains the effects of List and Analysis permanently on all cards from No. 000 to 099. (Effect lasts until target player leaves the game.),Spell,LR - C
+1037,Recycle,F,170,"Allows an item converted from a card to be changed into card form once more. (Limited to cards of rank below C. If the applicable card limit is already at MAX, “Recycle” disappears without converting the target item.)",Spell,SR - RS
+1038,List,G,350,"Inform on number of people in possession of target card, as well as the total number of copies.",Spell,LR - RS
+1039,Accompany,F,130,Fly all players within a radius of 20 m around the caster – including the caster – to the location of target city (limited to cities previously visited) or target player (limited to players previously met inside the game).,Spell,SR - RS
+1040,Contact,F,200,"Allows communication through the binders with target player (limited to players previously met inside the game. Maximum duration is 3 minutes; during this period, only the player initiating conversation with “Contact” can cut off communication.)",Spell,LR - RS

@@ -1,0 +1,22 @@
+﻿number,name,rank,limit,description,class,spellType
+100,Map of the Island empty,G,400,A map of the island. No towns or markers are currently shown. The user will automatically fill these in on their travels.,Unspecified Slot,null
+101,Map of the Island detailed,D,70,"A detailed map of the island, with all towns and markers already shown.",Unspecified Slot,null
+102,Voucher,SS,150,A special voucher which transforms into the card Angels Breath once one becomes available.,Unspecified Slot,null
+110,Rulers Invitation,SS,1,"A letter which extends a warm invitation to visit the games capital city, Limeiro. A visit to this citys castle is also included.",Unspecified Slot,null
+163,Sick Villagers,F,150,These villagers are very sick.,Unspecified Slot,null
+263,Healthy Villagers,C,50,These villagers are as healthy as can be!,Unspecified Slot,null
+266,Transport Ticket,B,150,A ticket which allows the barer to use a safe passage out of the game.,Unspecified Slot,null
+572,Giant Cyclops,G,333,These one-eyed giants are the largest of all Cyclops. They travel in small groups and attack anything within their territory.,Unspecified Slot,null
+585,Bubble Horse,C,50,This hard-to-catch creature emits bubbles when threatened as a diversionary tactic. White bubbles will burst in contact with Aura. Red ones will burst with everything else except Aura.,Unspecified Slot,null
+598,Chief of Wolf Pack,C,45,The leader of a wolf pack that attacks travelers.,Unspecified Slot,null
+607,"J10,000",H,-2,"10,000  in card form.",Unspecified Slot,null
+673,Hyper Puffball,D,80,"This little creature is a fast fellow. They are a really fast, hard to catch species.",Unspecified Slot,null
+697,Melanin Lizard,E,100,A very large lizard big enough to eat a cow whole.,Unspecified Slot,null
+711,Radio Rat,H,800,"These hard to catch creatures use aura to control a suit of armor. As a defensive measure, it uses this armor to mislead a target into thinking the armor is the enemy whilst the true creature can escape.",Unspecified Slot,null
+1217,Galgaida,F,185,"This fish when cooked, tastes delicious.",Unspecified Slot,null
+7018,Chidon,C,-1,A fish. Debut in Chapter 172.,Unspecified Slot,null
+-1,Gold Dust Girl Guard,F,-1,The guard is an NPC. He guarded the Gold Dust Girl.,Unspecified Slot,null
+-2,Cursed Statue of Lady Luck,??,-1,A reward in Antokiba. Debut in Chapter 129.,Unspecified Slot,null
+14170,Gasoline,H,-2,A vial containing gasoline. This flammable substance will catch fire easily.,Unspecified Slot,null
+21449,Rock,H,-2,A simple rock. Quite hard and can be any size.,Unspecified Slot,null
+25008,Large Rock,H,-2,A large rock.,Unspecified Slot,null
