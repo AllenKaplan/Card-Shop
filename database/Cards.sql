@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS Cards;
+DROP TABLE IF EXISTS CardMarket; 
 
 CREATE TABLE Cards (
     number int not null,
@@ -136,7 +137,10 @@ insert into
         number,
         name,
         rank,
-        limit, description, class, spellType
+        limit, 
+        description, 
+        class, 
+        spellType
     )
 values
 (100,'Map of the Island empty','G',400,'A map of the island. No towns or markers are currently shown. The user will automatically fill these in on their travels.','Unspecified Slot',null),
@@ -167,8 +171,10 @@ insert into
         number,
         name,
         rank,
-        limit
-, description, class, spellType
+        limit, 
+        description, 
+        class, 
+        spellType
     )
 values
 (1001,'Peek','G',200,'View contents of target players (previously met) free slots.','Spell','LR | RS'),
@@ -212,3 +218,12 @@ values
 (1039,'Accompany','F',130,'Fly all players within a radius of 20 m around the caster – including the caster – to the location of target city (limited to cities previously visited) or target player (limited to players previously met inside the game).','Spell','SR | RS'),
 (1040,'Contact','F',200,'Allows communication through the binders with target player (limited to players previously met inside the game. Maximum duration is 3 minutes; during this period, only the player initiating conversation with “Contact” can cut off communication.)','Spell','LR | RS');
 
+CREATE TABLE CardMarket(
+    number int not null,
+    --Current going price of the card
+    sellingPrice REAL notnull,
+    --quanitity remaining in inventory
+    quantityRemaining INT notnull,
+    FOREIGN KEY (number) REFERENCES Cards(number),
+    CONSTRAINT notNegative CHECK (sellingPrice>=0 AND quantity>=0)
+);
