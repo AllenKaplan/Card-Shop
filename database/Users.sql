@@ -1,8 +1,3 @@
-DROP TABLE IF EXISTS Logins;
-DROP TABLE IF EXISTS Accounts;
-DROP TABLE IF EXISTS Addresses;
-DROP TABLE IF EXISTS CreditCards;
-
 CREATE TABLE Logins (
     username VARCHAR(20) not null,
     password VARCHAR(20) not null,
@@ -10,16 +5,17 @@ CREATE TABLE Logins (
 );
 
 CREATE TABLE Accounts (
-    username INT not null,
+    username VARCHAR(20) not null,
     fname VARCHAR(25) not null,
     lname VARCHAR(25) not null,
     email VARCHAR(100) not null,
-    accountType ENUM('CUSTOMER', 'ADMIN', 'VISITOR') not null,
-    FOREIGN KEY (username) REFERENCES Logins(username)
+    accountType VARCHAR(13) not null,
+    FOREIGN KEY (username) REFERENCES Logins(username),
+    CONSTRAINT valid CHECK (accountType = 'CUSTOMER' OR accountType = 'ADMINISTRATOR' OR accountType='VISITOR')
 );
 
 CREATE TABLE Addresses (
-    addressID INT unsigned not null auto_increment,
+    addressID INT not null GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
     street VARCHAR(100) not null,
     province VARCHAR(20) not null,
     country VARCHAR(20) not null,
@@ -30,7 +26,7 @@ CREATE TABLE Addresses (
 
 CREATE TABLE CreditCards (
     cardID INT not null,
-    username INT not null,
+    username VARCHAR(20) not null,
     billingAddressID INT not null,
     cardNumber INT not null, 
     holderName VARCHAR(100),
