@@ -1,0 +1,41 @@
+fieldset {
+	margin: 10px 0;
+}
+
+.payment-body {
+	width: 50%;
+	margin: auto;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.input {
+	margin: 0 10px;
+	width: 100%;
+}
+
+.payment-input {
+	width: 90%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #808080;
+}
+
+.security-code {
+	width: 24px;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #808080;
+}
+
+.payment-button {
+	background-color: #47d147;
+	color: white;
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}

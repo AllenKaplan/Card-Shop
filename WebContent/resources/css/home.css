@@ -47,3 +47,7 @@
 .card-name {
 	text-align: center;
 }
+
+.error-star {
+ 	display: none;
+}

@@ -4,16 +4,42 @@
 	<output doctype-root-element="html" doctype-public="-//W3C//DTD XHTML 1.0 Transition al//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
-			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/helloworld.css" />
-			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/helloworld.js">;</script>
-			<title>
-				Basic JSTL Usable JSPX File
-			</title>
+			<link rel="StyleSheet"
+				href="${pageContext.request.contextPath}/resources/css/home.css" type="text/css"
+				title="cse4413" media="screen, print" />
+			<link rel="StyleSheet"
+				href="${pageContext.request.contextPath}/resources/css/login.css" type="text/css"
+				title="cse4413" media="screen, print" />
+			<title>Login</title>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js">;</script>
 		</head>
 		<body>
-			<h1>
-				It might be wednesday, my dudes
-			</h1>
+			<div class="header">
+				<h2>Massadora Card Shop</h2>
+				<div class="search">
+					<input type="text"></input>
+					<button>Go</button>
+				</div>
+			</div>
+			<div class="login-body">
+				<form action="login" method="POST" onsubmit="return login();">
+					<label for="username">
+						Username:
+					</label>
+					<label id="username-error" class="error-star">*</label>
+					<BR />
+					<input class="login-input" type="text" name="username" id="username"></input>
+					<BR />
+					<label for="password">
+						Password:
+					</label>
+					<label id="password-error" class="error-star">*</label>
+					<BR />
+					<input class="login-input" type="password" name="password" id="password"></input>
+					<BR />
+					<button class="login-button" action="submit" name="login" value="true">Login</button>
+				</form>
+			</div>
 		</body>
 	</html>
 </root>
