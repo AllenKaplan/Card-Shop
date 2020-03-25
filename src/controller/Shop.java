@@ -33,14 +33,9 @@ public class Shop extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		if(request.getRequestURI().contains("cart")) {
 			Map<CardBean, Integer> cart = (Map<CardBean, Integer>) request.getSession().getAttribute("cart");
 			response.getWriter().append("This is your shopping cart");
-		}
-		
-		else if(request.getRequestURI().contains("payment")) {
-			response.getWriter().append("Make your payment");
 		}
 		
 		else if(request.getRequestURI().contains("login")) {
@@ -48,8 +43,8 @@ public class Shop extends HttpServlet {
 		}
 		
 		else {
-			CardModel shop = new CardModel();
-			List<ProductBean> products = shop.retrieveCards();
+			CardModel cards = new CardModel();
+			List<ProductBean> products = cards.retrieveCards();
 			
 			request.setAttribute("products", products);
 			

@@ -7,14 +7,14 @@ public abstract class ProductBean {
 	private String description;
 	private double cost;
 	private int rating;
-	private List<String> images;
+	private String img;
 
-	public ProductBean(String name, String description, double cost, int rating, List<String> images) {
+	public ProductBean(String name, String description, double cost, int rating, String img) {
 		this.name = name;
 		this.description = description;
 		this.cost = cost;
 		this.rating = rating;
-		this.images = images;
+		this.img = img;
 	}
 	public String getName() {
 		return name;
@@ -41,11 +41,11 @@ public abstract class ProductBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public List<String> getImages() {
-		return images;
+	public String getImages() {
+		return img;
 	}
-	public void setImages(List<String> images) {
-		this.images = images;
+	public void setImages(String images) {
+		this.img = images;
 	}
 	
 }

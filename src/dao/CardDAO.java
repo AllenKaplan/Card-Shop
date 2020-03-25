@@ -30,9 +30,14 @@ public class CardDAO {
 
 	public List<ProductBean> retrieveAll() {
 		List<ProductBean> products = new ArrayList<>();
-		//Need to implement model for card shop; Currently testing with beans directly
-		ProductBean testItem = new CardBean("testName", "testDesc", 420.69, 10, null);
-		products.add(testItem);
+		//Need to implement model for card shop; Currently testing with beans directly=
+		
+		ProductBean testItem1 = new CardBean("testName1", "testDesc1", 420.69, 1, null);
+		ProductBean testItem2 = new CardBean("testName2", "testDesc2", 420.69, 2, null);
+		ProductBean testItem3 = new CardBean("testName3", "testDesc3", 420.69, 3, null);
+		products.add(testItem1);
+		products.add(testItem2);
+		products.add(testItem3);
 		
 		return products;
 	}
