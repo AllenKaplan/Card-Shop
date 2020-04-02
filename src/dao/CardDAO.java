@@ -29,6 +29,9 @@ public class CardDAO {
 	}
 
 	public ProductBean retrieve() {
+		/*
+		select * from cards where id=id_number
+		*/
 		ProductBean testItem = new CardBean("testName", "testDesc", 420.69, 10, null);
 		
 		return testItem;

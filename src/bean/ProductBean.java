@@ -39,10 +39,10 @@ public abstract class ProductBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getImgs() {
+	public String getImg() {
 		return img;
 	}
-	public void setImgs(String img) {
+	public void setImg(String img) {
 		this.img = img;
 	}
 	
