@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import bean.ProductBean;
@@ -18,7 +19,7 @@ public class CardModel {
 		
 	}
 	
-	public List<ProductBean> retrieveCards(){
+	public List<ProductBean> retrieveCards() throws SQLException{
 		return card.retrieveAll();
 	}
 	

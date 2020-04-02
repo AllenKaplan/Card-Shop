@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,10 +45,17 @@ public class Shop extends HttpServlet {
 		
 		else {
 			CardModel cards = new CardModel();
-			List<ProductBean> products = cards.retrieveCards();
+			List<ProductBean> products;
 			
-			request.setAttribute("products", products);
-			
+			try {
+				products = cards.retrieveCards();
+				request.setAttribute("products", products);
+				for (ProductBean b:products)
+					System.out.println(b.getName() + " Price: " + b.getCost());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+						
 			String target = "/home.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		}
