@@ -18,38 +18,20 @@
 				<h2>Massadora Card Shop</h2>
 				<div class="search">
 					<input type="text"></input>
-					<BUTTON>Go</BUTTON>
+					<BUTTON onclick="alert(value)" value="GO"></BUTTON>
 				</div>
 				
 			</div>
-			
-<%-- 			TESTING FOR EACH BECAUSE IT WAS BROKEN -ALLEN	
-				<h3>${products}</h3> <br />
-				${products[0]}<br/>
-				${products[0].name}<br/>
-				${products[1].name}<br/>
-				${products[2].name}<br/>
-				
-				    <h3>From 1 to 10</h3>
-		      <c:forEach var="i" begin="1" end="10">
-		        <tr>
-		        <td>${i}<br/></td>
-		        </tr>
-		      </c:forEach>
-				
-				<c:forEach items="${products}" var="product">
-					<c:out value="${product.name}"></c:out> <br/>
-				</c:forEach> --%>
-				
 			<div class="body">
 				
 				<table class="my-table">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Rating</th>
-							<th>Cost</th>
+							<th width="20%">Image</th>
+							<th width="20%">Name</th>
+							<th width="30%">Description</th>
+							<th width="10%">Limit</th>
+							<th width="10%">Cost</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,7 +40,7 @@
 								<td><img class="image" src="${product.img}" /></td>
 								<td><c:out value="${product.name}" /></td> 
 								<td>${product.description}</td>
-								<td>${product.rating}/10</td>
+								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
 							</tr>
 						</c:forEach>

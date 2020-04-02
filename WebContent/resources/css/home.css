@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+body, header{
+	font-family: sans-serif;
+  background: #c4d3f6;
+}
+
 .header {
 	background-color: #6790EE;
 	margin: -8px;
@@ -50,4 +55,43 @@
 
 .error-star {
  	display: none;
+}
+
+
+
+table {
+  width: 960px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  padding: 30px 30px 30px 30px;
+  width: 100%;
+  display: table;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0px
+}
+
+@media screen and (max-width: 768px) {
+  table {
+    display: block;
+  }
+}
+
+tr {
+  display: table-row;
+  background: #fff;
+}
+
+th {
+  color: #ffffff;
+	background: #6790EE;
+  padding: 1rem;
+}
+
+tr:hover{
+	background: #6790EE;
+	
 }
