@@ -22,8 +22,7 @@ public class CardDAO {
 
 	public CardDAO() throws ClassNotFoundException {
 		try {
-			//java:/comp/env/jdbc/EECS
-			dataSource = (DataSource) (new InitialContext()).lookup("jdbc/Db2-CardShop");
+			dataSource = (DataSource) (new InitialContext()).lookup(DatabaseAccess.instance.ACTIVE_ACCESS);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
