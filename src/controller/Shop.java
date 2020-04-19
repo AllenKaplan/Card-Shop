@@ -46,9 +46,11 @@ public class Shop extends HttpServlet {
 		} else if(request.getRequestURI().contains("login")) {
 			response.getWriter().append("Please log in");
 		} else if(params.containsKey("review")) {
+			System.out.println("GET | HOME -> REVIEW");
 			response.getWriter().append("Review added:\n");
 			response.getWriter().append(request.getParameter("review"));
-		} else if(params.containsKey("addToCart")) {
+		} else if(params.containsKey("addToCart") && request.getParameter("addToCart") != null) {
+			System.out.println("GET | HOME -> ADD TO CART");
 			CardModel cards = new CardModel();
 			
 			ProductBean cardToAdd = cards.retrieveCard(request.getParameter("addToCart"));
@@ -60,7 +62,8 @@ public class Shop extends HttpServlet {
 				cart.put(cardToAdd, 1);
 			}
 			
-		} else if(params.containsKey("search")) {
+		} else if(params.containsKey("search") && request.getParameter("search") != null) {
+			System.out.println("GET | HOME -> SEARCH");
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
@@ -77,6 +80,7 @@ public class Shop extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 		
 		}else {
+			System.out.println("GET | HOME PAGE");
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
