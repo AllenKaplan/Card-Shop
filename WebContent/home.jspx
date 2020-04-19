@@ -17,7 +17,7 @@
 			<div class="header">
 				<h2>Massadora Card Shop</h2>
 				<div class="search">
-					<form action=shop method="post">
+					<form action="Shop" method="post">
 						<input type="text" name="query"></input>
     					<input type="submit" name="search" value="go" />
 					</form>
@@ -47,12 +47,12 @@
 								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
 								<td>
-									<form action=shop method="post">
+									<form action="Shop" method="post">
     									<input type="submit" name="review" value="${product.name}" />
 									</form>
 								</td>
 								<td>
-									<form action="cart" method="post">
+									<form action="Shop" method="post">
     									<input type="submit" name="addToCart" value="${product.name}" />
 									</form>
 								</td>
