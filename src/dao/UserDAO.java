@@ -20,7 +20,7 @@ public class UserDAO {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 	
 	/**
 	 * Tries to login
