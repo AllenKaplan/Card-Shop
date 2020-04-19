@@ -74,7 +74,7 @@ public class CardDAO {
 		
 		List<ProductBean> products = new ArrayList<>();
 		
-		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.name like " + searchQuery;      
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.name like %" + searchQuery + "%";      
 		Connection con = this.dataSource.getConnection();   
 		PreparedStatement p = con.prepareStatement(query);   
 		ResultSet r = p.executeQuery();   
