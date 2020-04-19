@@ -58,13 +58,12 @@ public class Shop extends HttpServlet {
 			response.getWriter().append(request.getParameter("review"));
 		} else if(params.containsKey("addToCart") && request.getParameter("addToCart") != null) {
 			System.out.println("GET | HOME -> ADD TO CART");
-			CardModel cards = new CardModel();
 			
 			int id = Integer.parseInt(request.getParameter("addToCart"));
 			
 			ProductBean cardToAdd;
 			try {
-				cardToAdd = cards.retrieveCardByID(id);
+				cardToAdd = CardModel.getInstance().retrieveCardByID(id);
 
 				if (cart.containsKey(cardToAdd)) {
 					int currentQnty = cart.get(cardToAdd);
@@ -73,6 +72,9 @@ public class Shop extends HttpServlet {
 					cart.put(cardToAdd, 1);
 				}
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -84,15 +86,17 @@ public class Shop extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("search") && request.getParameter("search") != null) {
 			System.out.println("GET | HOME -> SEARCH");
-			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
 			try {
-				products = cards.search(request.getParameter("query"));
+				products = CardModel.getInstance().search(request.getParameter("query"));
 				request.setAttribute("products", products);
 				for (ProductBean b:products)
 					System.out.println(b.getName() + " Price: " + b.getCost());
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 						
@@ -101,15 +105,17 @@ public class Shop extends HttpServlet {
 		
 		}else {
 			System.out.println("GET | HOME PAGE");
-			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
 			try {
-				products = cards.retrieveCards();
+				products = CardModel.getInstance().retrieveCards();
 				request.setAttribute("products", products);
 				for (ProductBean b:products)
 					System.out.println(b.getName() + " Price: " + b.getCost());
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 						
