@@ -34,16 +34,30 @@ public class Shop extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, String[]> params = request.getParameterMap();
+		
 		if(request.getRequestURI().contains("cart")) {
 			Map<CardBean, Integer> cart = (Map<CardBean, Integer>) request.getSession().getAttribute("cart");
 			response.getWriter().append("This is your shopping cart");
-		}
-		
-		else if(request.getRequestURI().contains("login")) {
+		} else if(request.getRequestURI().contains("login")) {
 			response.getWriter().append("Please log in");
-		}
+		} else if(params.containsKey("search")) {
+			CardModel cards = new CardModel();
+			List<ProductBean> products;
+			
+			try {
+				products = cards.search(request.getParameter("search"));
+				request.setAttribute("products", products);
+				for (ProductBean b:products)
+					System.out.println(b.getName() + " Price: " + b.getCost());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+						
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		
-		else {
+		}else {
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
