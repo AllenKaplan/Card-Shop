@@ -166,6 +166,7 @@ public class UserDAO {
 		updateAddressInfo.setString(3, updatedUser.getCity());
 		updateAddressInfo.setString(4, updatedUser.getPostal());
 		updateAddressInfo.setInt(5, address);
+		updateAddressInfo.close();
 		con.close(); 
 	}
 }
