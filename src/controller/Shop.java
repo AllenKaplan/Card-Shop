@@ -41,9 +41,11 @@ public class Shop extends HttpServlet {
 		
 		
 		if(request.getRequestURI().contains("cart")) {
+			System.out.println("GET | HOME -> CART");
 			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
 		} else if(request.getRequestURI().contains("login")) {
+			System.out.println("GET | HOME -> LOGIN");
 			response.getWriter().append("Please log in");
 		} else if(params.containsKey("review")) {
 			System.out.println("GET | HOME -> REVIEW");
