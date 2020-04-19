@@ -22,10 +22,10 @@ public class UserDAO {
 	 * Tries to login
 	 * @param username
 	 * @param password
-	 * @return The type (customer, admin, or partner) of the account that logged in. If no account found, returns null
+	 * @return A user bean consisting of the account info that logged in. If no account found, returns null
 	 */
-	public String login(String username, String password) {
-		return (username.equals("user") && password.equals("password")) ? "customer" : null;
+	public UserBean login(String username, String password) {
+		return (username.equals("user") && password.equals("password")) ? new UserBean("first", "last", "a", "b", "c", "d", "customer") : null;
 	}
 	
 	/**
