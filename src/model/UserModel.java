@@ -24,8 +24,13 @@ public class UserModel {
 		if (password.length() < 6) {
 			throw new Exception("Password must be 6 or more characters");
 		}
-		UserBean newUser = new UserBean(firstName, lastName, address, city, province, postal, "");
+		UserBean newUser = new UserBean(firstName, lastName, address, city, province, postal, "CUSTOMER");
 		userDAO.register(username, password, newUser);
+	}
+	
+	public void updateAddress(String firstName, String lastName, String address, 
+			String city, String province, String postal) throws Exception {
+		
 	}
 	
 	private void verifyInputs(String[] inputs) throws Exception {

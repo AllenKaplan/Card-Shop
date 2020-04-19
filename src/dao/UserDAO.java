@@ -31,7 +31,7 @@ public class UserDAO {
 	 */
 	public UserBean login(String username, String password) throws SQLException {
 		UserBean user = null;
-
+		System.out.println("*************\n " + username + "\n" + password + "\n***************");
 		String queryAccount = "select * from logins join accounts on logins.username = accounts.number where logins.username = ? and logins.password = ?"; 
 		Connection con = this.dataSource.getConnection();   
 		
