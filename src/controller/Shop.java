@@ -41,10 +41,13 @@ public class Shop extends HttpServlet {
 		
 		
 		if(request.getRequestURI().contains("cart")) {
-			response.getWriter().append("This is your shopping cart");
+			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
 		} else if(request.getRequestURI().contains("login")) {
 			response.getWriter().append("Please log in");
+		} else if(params.containsKey("review")) {
+			response.getWriter().append("Review added:\n");
+			response.getWriter().append(request.getParameter("review"));
 		} else if(params.containsKey("addToCart")) {
 			CardModel cards = new CardModel();
 			

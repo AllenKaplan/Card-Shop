@@ -53,7 +53,7 @@
 								</td>
 								<td>
 									<form action="cart" method="post">
-    									<input type="submit" name="cart" value="${product.name}" />
+    									<input type="submit" name="addToCart" value="${product.name}" />
 									</form>
 								</td>
 							</tr>
