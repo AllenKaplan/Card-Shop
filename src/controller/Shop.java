@@ -41,14 +41,18 @@ public class Shop extends HttpServlet {
 		
 		
 		if(request.getRequestURI().contains("cart")) {
+			System.out.println("GET | HOME -> CART");
 			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
 		} else if(request.getRequestURI().contains("login")) {
+			System.out.println("GET | HOME -> LOGIN");
 			response.getWriter().append("Please log in");
 		} else if(params.containsKey("review")) {
+			System.out.println("GET | HOME -> REVIEW");
 			response.getWriter().append("Review added:\n");
 			response.getWriter().append(request.getParameter("review"));
-		} else if(params.containsKey("addToCart")) {
+		} else if(params.containsKey("addToCart") && request.getParameter("addToCart") != null) {
+			System.out.println("GET | HOME -> ADD TO CART");
 			CardModel cards = new CardModel();
 			
 			ProductBean cardToAdd = cards.retrieveCard(request.getParameter("addToCart"));
@@ -60,12 +64,13 @@ public class Shop extends HttpServlet {
 				cart.put(cardToAdd, 1);
 			}
 			
-		} else if(params.containsKey("search")) {
+		} else if(params.containsKey("search") && request.getParameter("search") != null) {
+			System.out.println("GET | HOME -> SEARCH");
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
 			try {
-				products = cards.search(request.getParameter("search"));
+				products = cards.search(request.getParameter("query"));
 				request.setAttribute("products", products);
 				for (ProductBean b:products)
 					System.out.println(b.getName() + " Price: " + b.getCost());
@@ -77,6 +82,7 @@ public class Shop extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 		
 		}else {
+			System.out.println("GET | HOME PAGE");
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
