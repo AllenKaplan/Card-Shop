@@ -12,10 +12,25 @@
 				title="cse4413" media="screen, print" />
 			<title>Home</title>
 			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js">;</script>
+				<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous"/>
 		</head>
 		<body>
 			<div class="header">
-				<h2>Massadora Card Shop</h2>
+				<h2><a href="/home" class="title">CARD SHOP</a></h2>
 				<div class="search">
 					<form action="home" method="post">
 						<input type="text" name="query"></input>
@@ -29,39 +44,40 @@
 									<form action="home" method="post" id="review_form"></form>
 									
 									<form action="home" method="post" id="cart_form"></form>
-				<table class="my-table">
+				<div class="content">
+				<table class="table">
 					<thead>
 						<tr>
 							<th width="15%">Image</th>
-							<th width="5%">Card No.</th>
+							<th width="7%" style='text-align:center'>Card No.</th>
 							<th width="15%">Name</th>
-							<th width="25%">Description</th>
-							<th width="10%">Limit</th>
-							<th width="10%">Cost</th>
-							<th width="5%">Leave Review</th>
-							<th width="5%">Add to Cart</th>
+							<th width="22%">Description</th>
+							<th width="5%"  style='text-align:center'>Limit</th>
+							<th width="5%"  style='text-align:center'>Cost</th>
+							<th width="10%" style='text-align:center'>Leave Review</th>
+							<th width="10%" style='text-align:center'>Add to Cart</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${products}" var="product">
 							<tr>
 								<td><img class="image" src="${product.img}" /></td>
-								<td>${product.id}</td>
+								<td style='text-align:center'>${product.id}</td>
 								<td>${product.name}</td> 
 								<td>${product.description}</td>
-								<td>${product.limit}</td>
-								<td>$ ${product.cost}</td>
-								<td>
+								<td style='text-align:center'>${product.limit}</td>
+								<td style='text-align:center'>$ ${product.cost}</td>
+								<td style='text-align:center'>
     								<button type="submit" name="review" value="${product.id}" form="review_form">Review</button>
 								</td>
-								<td>
+								<td style='text-align:center'>
     								<button type="submit" name="addToCart" value="${product.id}" form="cart_form">Add to Cart</button>
 								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				
+				</div>
 			</div>
 		</body>
 	</html>

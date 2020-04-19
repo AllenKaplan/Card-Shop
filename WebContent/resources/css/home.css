@@ -14,7 +14,7 @@ body, header{
 	justify-content: space-between;
 }
 
-h2 {
+.title {
 	color: white;
 }
 
@@ -63,39 +63,28 @@ h2 {
 
 
 
-table {
-  width: 960px;
-  border-radius: 10px;
-  overflow: hidden;
-  width: 100%;
-  min-height: 100vh;
-  align-items: center;
-  padding: 30px 30px 30px 30px;
-  width: 100%;
-  display: table;
+.content {
   margin: 0 5em 0 5em;
-  border-collapse: separate;
-  border-spacing: 0px
 }
 
-@media screen and (max-width: 768px) {
-  table {
-    display: block;
-  }
-}
+/* @media screen and (max-width: 768px) { */
+/*   table { */
+/*     display: block; */
+/*   } */
+/* } */
 
-tr {
-  display: table-row;
-  background: #fff;
-}
+/* tr { */
+/*   display: table-row; */
+/*   background: #fff; */
+/* } */
 
-th {
- 	color: #ffffff;
-	background: #6790EE;
- 	padding: 1rem;
-}
+/* th { */
+/*  	color: #ffffff; */
+/* 	background: #6790EE; */
+/*  	padding: 1rem; */
+/* } */
 
-tr:hover{
-	background: #6790EE;
+/* tr:hover{ */
+/* 	background: #6790EE; */
 	
-}
+/* } */

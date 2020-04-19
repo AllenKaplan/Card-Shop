@@ -60,16 +60,27 @@ public class Shop extends HttpServlet {
 			System.out.println("GET | HOME -> ADD TO CART");
 			CardModel cards = new CardModel();
 			
-			ProductBean cardToAdd = cards.retrieveCard(request.getParameter("addToCart"));
-					
-			if (cart.containsKey(cardToAdd)) {
-				int currentQnty = cart.get(cardToAdd);
-				cart.put(cardToAdd, currentQnty+1);
-			} else {
-				cart.put(cardToAdd, 1);
-			}
+			int id = Integer.parseInt(request.getParameter("addToCart"));
+			
+			ProductBean cardToAdd;
+			try {
+				cardToAdd = cards.retrieveCardByID(id);
 
-			String target = "/home.jspx";
+				if (cart.containsKey(cardToAdd)) {
+					int currentQnty = cart.get(cardToAdd);
+					cart.put(cardToAdd, currentQnty+1);
+				} else {
+					cart.put(cardToAdd, 1);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+
+			request.setAttribute("products", cart);
+			
+			String target = "/cart.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("search") && request.getParameter("search") != null) {
 			System.out.println("GET | HOME -> SEARCH");

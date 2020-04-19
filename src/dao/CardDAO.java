@@ -35,6 +35,38 @@ public class CardDAO {
 		return testItem;
 	}
 	
+	public ProductBean retrieveByID(int id) throws SQLException {
+		/*
+		select * from cards where id=id_number
+		*/
+		
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.number  = " + id;      
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement p = con.prepareStatement(query);   
+		
+		ResultSet r = p.executeQuery();   
+		if (r.next()) {
+			String name = r.getString("name");
+			String desc = r.getString("description");
+			Double price = Double.parseDouble(r.getString("sellingPrice"));
+			Integer rating = Integer.parseInt(r.getString("Limit"));
+
+			r.close();   
+			p.close();   
+			con.close();   
+			
+			return new CardBean(id, name, desc, price, rating, null);
+		} else {
+			r.close();   
+			p.close();   
+			con.close(); 
+			
+			return null;
+		}
+					
+		
+	}
+	
 	public List<ProductBean> search(String searchQuery) throws SQLException {
 		/*
 		select * from cards where name like query
@@ -42,7 +74,7 @@ public class CardDAO {
 		
 		List<ProductBean> products = new ArrayList<>();
 		
-		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.name like " + searchQuery;      
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.name like '%" + searchQuery + "%'";      
 		Connection con = this.dataSource.getConnection();   
 		PreparedStatement p = con.prepareStatement(query);   
 		ResultSet r = p.executeQuery();   
