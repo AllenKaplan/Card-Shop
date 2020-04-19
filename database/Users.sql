@@ -26,18 +26,4 @@ CREATE TABLE Addresses (
     PRIMARY KEY(addressID)
 );
 
-CREATE TABLE CreditCards (
-    cardID INT not null,
-    username VARCHAR(20) not null,
-    billingAddressID INT not null,
-    cardNumber INT not null, 
-    holderName VARCHAR(100),
-    expirationMonth INT not null,
-    expirationDay INT not null,
-    cvv INT not null,
-    PRIMARY KEY (username),
-    FOREIGN KEY (username) REFERENCES Logins(username),
-    FOREIGN KEY (billingAddressID) REFERENCES Addresses(addressID)
-);
-
 

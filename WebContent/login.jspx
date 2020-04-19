@@ -21,6 +21,9 @@
 					<button>Go</button>
 				</div>
 			</div>
+			<c:if test="${ error != null }">
+				${ error }
+			</c:if>
 			<div class="login-body">
 				<form action="login" method="POST" onsubmit="return login();">
 					<label for="username">

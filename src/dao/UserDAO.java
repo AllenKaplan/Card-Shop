@@ -31,8 +31,7 @@ public class UserDAO {
 	 */
 	public UserBean login(String username, String password) throws SQLException {
 		UserBean user = null;
-
-		String queryAccount = "select * from logins join accounts on logins.username = accounts.username where logins.username = ? and logins.password = ?"; 
+		String queryAccount = "select * from logins join accounts on logins.username = accounts.username where logins.username = ? and logins.password = ?";
 		Connection con = this.dataSource.getConnection();   
 		
 		PreparedStatement login = con.prepareStatement(queryAccount);   
@@ -64,7 +63,7 @@ public class UserDAO {
 				province = addResult.getString("province");
 				postal = addResult.getString("zip");
 			}
-			user = new UserBean(fname, lname, street, city, province, postal, accountType);
+			user = new UserBean(username, fname, lname, street, city, province, postal, accountType);
 			addResult.close();   
 			statmentAddress.close();   
 		}   
@@ -123,6 +122,51 @@ public class UserDAO {
 		addAddress.close();
 		addAccount.close();
 		r.close();
+		con.close(); 
+	}
+	
+	/**
+	 * Updates name and address for the given user 
+	 * @param updatedUser - contains info that should be updated
+	 */
+	public void updateUser(UserBean updatedUser) throws Exception {
+		UserBean user = null;
+		String queryAccount = "select address from account where username = ?";
+		
+		Connection con = this.dataSource.getConnection();   
+		
+		PreparedStatement getAddress = con.prepareStatement(queryAccount);   
+		getAddress.setString(1, updatedUser.getUsername());	
+		ResultSet addressResult = getAddress.executeQuery();  
+		
+		int address;
+		if (addressResult.next()) //if an address exists
+		{
+			address = addressResult.getInt("address");
+		} else {
+			throw new Exception("Could not find address");
+		}
+		
+		addressResult.close();   
+		getAddress.close();   
+		
+		
+		String updateAccount = "update account set fname = ?, lname = ? where username = ?";
+		PreparedStatement updateName = con.prepareStatement(updateAccount);   
+		updateName.setString(1, updatedUser.getFirstName());
+		updateName.setString(2, updatedUser.getLastName());
+		updateName.setString(3, updatedUser.getUsername());
+		updateName.executeUpdate(); 
+		updateName.close();
+		
+		String updateAddress = "update address set street = ?, province = ?, city = ?, zip = ? where addressId = ?";
+		PreparedStatement updateAddressInfo = con.prepareStatement(updateAddress);
+		updateAddressInfo.setString(1, updatedUser.getAddress());
+		updateAddressInfo.setString(2, updatedUser.getProvince());
+		updateAddressInfo.setString(3, updatedUser.getCity());
+		updateAddressInfo.setString(4, updatedUser.getPostal());
+		updateAddressInfo.setInt(5, address);
+		updateAddressInfo.close();
 		con.close(); 
 	}
 }

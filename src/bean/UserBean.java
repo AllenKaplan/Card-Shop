@@ -1,18 +1,18 @@
 package bean;
 
 public class UserBean {
+	private String username;
 	private String firstName;
 	private String lastName;
 	private String address;
 	private String city;
 	private String province;
 	private String postal;
-	private String accountType;
+	private String accountType;	
 	
-	
-	
-	public UserBean(String firstName, String lastName, String address, String city, String province, String postal, String accountType) {
+	public UserBean(String username, String firstName, String lastName, String address, String city, String province, String postal, String accountType) {
 		super();
+		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -22,6 +22,12 @@ public class UserBean {
 		this.accountType = accountType;
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
