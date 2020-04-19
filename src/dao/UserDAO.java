@@ -16,12 +16,11 @@ public class UserDAO {
 
 	public UserDAO() throws ClassNotFoundException {
 		try {
-			dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/EECS");
+			dataSource = (DataSource) (new InitialContext()).lookup(DatabaseAccess.instance.ACTIVE_ACCESS);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		
-	}
+	} 
 	
 	/**
 	 * Tries to login
