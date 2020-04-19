@@ -47,7 +47,11 @@
 								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
 								<td>
+<<<<<<< HEAD
+									<form action="shop" method="post">
+=======
 									<form action="Shop" method="post">
+>>>>>>> ccef971b306adf5eeeeb33436894f9dfb8b89cc5
     									<input type="submit" name="review" value="${product.name}" />
 									</form>
 								</td>

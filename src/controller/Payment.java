@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.UserBean;
 import model.UserModel;
 
 /**
@@ -20,6 +21,7 @@ import model.UserModel;
 public class Payment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServletContext context;
+	private int succeededRequests;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +34,7 @@ public class Payment extends HttpServlet {
     @Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		succeededRequests = 0;
 		context = getServletContext();
 		// Instantiate Loan object
 		try {
@@ -58,23 +61,24 @@ public class Payment extends HttpServlet {
 		
 		boolean payment = paymentString != null && paymentString.equals("true");
 		
-		String accountType = (String) request.getSession().getAttribute("accountType");
+		UserBean loggedInUser = (UserBean) request.getSession().getAttribute("loggedInUser");
 		
-		if (accountType == null) {
+		if (loggedInUser == null) {
 			// User not logged in. Redirect to login page.
 			response.sendRedirect("/EECS4413_Project/login");
 			return;
 		} else if (payment) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
 			
-			// fail 25% of the time
-			Random random = new Random();
-			if (random.nextInt(4) == 0) {
+			// fail every third request
+			if (succeededRequests >= 2) {
 				// failed
+				succeededRequests = 0;
 				request.setAttribute("message", "Credit Card Authorization Failed");
 			} else {
 				// passed
 				// update address data
+				
 				// update order data
 				request.setAttribute("message", "Order Successfully Completed");
 			}
@@ -83,7 +87,12 @@ public class Payment extends HttpServlet {
 			return;
 		} else {
 			// get default payment info
-			
+			request.setAttribute("firstName", loggedInUser.getFirstName());
+			request.setAttribute("lastName", loggedInUser.getLastName());
+			request.setAttribute("address", loggedInUser.getAddress());
+			request.setAttribute("city", loggedInUser.getCity());
+			request.setAttribute("province", loggedInUser.getProvince());
+			request.setAttribute("postal", loggedInUser.getPostal());
 		}
 		
 		String target = "/payment.jspx";
