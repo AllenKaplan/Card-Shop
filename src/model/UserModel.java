@@ -10,7 +10,7 @@ public class UserModel {
 		userDAO = new UserDAO();
 	}
 	
-	public String login(String username, String password) throws Exception {
+	public UserBean login(String username, String password) throws Exception {
 		String[] inputs = { username, password };
 		this.verifyInputs(inputs);
 		return userDAO.login(username, password);
@@ -21,15 +21,20 @@ public class UserModel {
 			String city, String province, String postal) throws Exception {
 		String[] inputs = { username, password, firstName, lastName, address, city, province, postal };
 		this.verifyInputs(inputs);
-		UserBean newUser = new UserBean(firstName, lastName, address, city, province, postal);
+		if (password.length() < 6) {
+			throw new Exception("Password must be 6 or more characters");
+		}
+		UserBean newUser = new UserBean(firstName, lastName, address, city, province, postal, "");
 		userDAO.register(username, password, newUser);
 	}
 	
 	private void verifyInputs(String[] inputs) throws Exception {
 		for (String input: inputs) {
-			if (input.contains(";"))
+			if (input == null || input.equals("")) {
+				throw new Exception("Inputs cannot be empty");
+			} else if (input.contains(";")) {
 				throw new Exception("Input cannot contain ;");
-			else if (input.toUpperCase().contains(" OR ") || input.toUpperCase().contains(" AND ")) {
+			} else if (input.toUpperCase().contains(" OR ") || input.toUpperCase().contains(" AND ")) {
 				throw new Exception("Input cannot contain SQL commands.");
 			}
 		}
