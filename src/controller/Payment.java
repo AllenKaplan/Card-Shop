@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -57,13 +58,32 @@ public class Payment extends HttpServlet {
 		
 		boolean payment = paymentString != null && paymentString.equals("true");
 		
-		if (payment) {
+		String accountType = (String) request.getSession().getAttribute("accountType");
+		
+		if (accountType == null) {
+			// User not logged in. Redirect to login page.
+			response.sendRedirect("/EECS4413_Project/login");
+			return;
+		} else if (payment) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
-			// update user data?
 			
 			// fail 25% of the time
+			Random random = new Random();
+			if (random.nextInt(4) == 0) {
+				// failed
+				request.setAttribute("message", "Credit Card Authorization Failed");
+			} else {
+				// passed
+				// update address data
+				// update order data
+				request.setAttribute("message", "Order Successfully Completed");
+			}
+			String target = "/results.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
+			return;
 		} else {
 			// get default payment info
+			
 		}
 		
 		String target = "/payment.jspx";

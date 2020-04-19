@@ -26,5 +26,10 @@ public class CardModel {
 	public ProductBean retrieveCard(String name) {
 		return card.retrieve();
 	}
+	
+
+	public List<ProductBean> search(String searchQuery) throws SQLException{
+		return card.search(searchQuery);
+	}
 
 }

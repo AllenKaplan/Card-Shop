@@ -38,6 +38,7 @@
 					<input class="login-input" type="password" name="password" id="password"></input>
 					<BR />
 					<button class="login-button" action="submit" name="login" value="true">Login</button>
+					<button class="login-button" action="submit" name="startRegister" value="true">Register Now</button>
 				</form>
 			</div>
 		</body>

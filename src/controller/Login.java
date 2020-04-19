@@ -48,8 +48,12 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String loginString = request.getParameter("login");
+		String startRegisterString = request.getParameter("startRegister");
+		String registerString = request.getParameter("register");
 		
 		boolean login = loginString != null && loginString.equals("true");
+		boolean startRegister = startRegisterString != null && startRegisterString.equals("true");
+		boolean register = registerString != null && registerString.equals("true");
 		
 		System.out.println(request.getRequestURI());
 		System.out.println(username);
@@ -59,26 +63,48 @@ public class Login extends HttpServlet {
 		if (login) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
 			try {
-				if (userModel.login(username, password)) {
-					String previousPage = request.getParameter("previousPage");
-					if (previousPage != null) {
-						System.out.println("A");
-						response.sendRedirect(previousPage);
-					} else {
-						System.out.println("A-");
-						response.sendRedirect("/EECS4413_Project/home");
-						return;
-					}
-					
+				String accountType = userModel.login(username, password); 
+				System.out.println("ACC TYPE: " + accountType);
+				if (accountType != null) {
+					// On successful login, set accountType
+					request.getSession().setAttribute("accountType", accountType);
+					response.sendRedirect("/EECS4413_Project/payment");
+					return;
 				} else {
 					// login failed
 					System.out.println("Login failed");
 				}
-				
-				return;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (register) {
+			System.out.println("Complete Registration");
+			
+			// Get data
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
+			String address = request.getParameter("address");
+			String city = request.getParameter("city");
+			String province = request.getParameter("province");
+			String postal = request.getParameter("postal");
+			
+			// Create account
+			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
+			try {
+				userModel.register(username, password, firstName, lastName, address, city, province, postal);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// print error and go back to registration
+				request.setAttribute("error", "Registration Failed: " + e.getMessage());
+				String target = "/register.jspx";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			}
+		} else if (startRegister) {
+			System.out.println("Start registration");
+			String target = "/register.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
+			return;
 		}
 		
 		String target = "/login.jspx";
