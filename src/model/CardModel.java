@@ -22,9 +22,13 @@ public class CardModel {
 	public List<ProductBean> retrieveCards() throws SQLException{
 		return card.retrieveAll();
 	}
-	
+
 	public ProductBean retrieveCard(String name) {
 		return card.retrieve();
+	}
+	
+	public ProductBean retrieveCardByID(int id) throws SQLException {
+		return card.retrieveByID(id);
 	}
 	
 
