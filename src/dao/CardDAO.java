@@ -22,16 +22,44 @@ public class CardDAO {
 
 	public CardDAO() throws ClassNotFoundException {
 		try {
-			dataSource = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/EECS");
+			dataSource = (DataSource) (new InitialContext()).lookup(DatabaseAccess.instance.ACTIVE_ACCESS);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public ProductBean retrieve() {
+		/*
+		select * from cards where id=id_number
+		*/
 		ProductBean testItem = new CardBean("testName", "testDesc", 420.69, 10, null);
 		
 		return testItem;
+	}
+	
+	public List<ProductBean> search(String searchQuery) throws SQLException {
+		/*
+		select * from cards where name like query
+		*/
+		
+		List<ProductBean> products = new ArrayList<>();
+		
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.name like " + searchQuery;      
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement p = con.prepareStatement(query);   
+		ResultSet r = p.executeQuery();   
+		while (r.next())
+		{    
+			String name = r.getString("name");
+			String desc = r.getString("description");
+			Double price = Double.parseDouble(r.getString("sellingPrice"));
+			Integer rating = Integer.parseInt(r.getString("Limit"));				
+			products.add(new CardBean(name, desc, price, rating, null));
+		}   
+		r.close();   
+		p.close();   
+		con.close();   
+		return products; 
 	}
 
 	public List<ProductBean> retrieveAll() throws SQLException{

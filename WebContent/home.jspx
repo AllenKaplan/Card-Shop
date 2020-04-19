@@ -17,21 +17,25 @@
 			<div class="header">
 				<h2>Massadora Card Shop</h2>
 				<div class="search">
-					<input type="text"></input>
-					<BUTTON>Go</BUTTON>
+					<form action=shop method="post">
+						<input type="text" name="query"></input>
+    					<input type="submit" name="search" value="go" />
+					</form>
 				</div>
 				
 			</div>
-				
 			<div class="body">
 				
 				<table class="my-table">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Rating</th>
-							<th>Cost</th>
+							<th width="20%">Image</th>
+							<th width="15%">Name</th>
+							<th width="25%">Description</th>
+							<th width="10%">Limit</th>
+							<th width="10%">Cost</th>
+							<th width="5%">Leave Review</th>
+							<th width="5%">Add to Cart</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,8 +44,18 @@
 								<td><img class="image" src="${product.img}" /></td>
 								<td><c:out value="${product.name}" /></td> 
 								<td>${product.description}</td>
-								<td>${product.rating}/10</td>
+								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
+								<td>
+									<form action=shop method="post">
+    									<input type="submit" name="review" value="${product.name}" />
+									</form>
+								</td>
+								<td>
+									<form action="cart" method="post">
+    									<input type="submit" name="addToCart" value="${product.name}" />
+									</form>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

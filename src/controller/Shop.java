@@ -34,16 +34,49 @@ public class Shop extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, String[]> params = request.getParameterMap();
+
+		@SuppressWarnings("unchecked")
+		Map<ProductBean, Integer> cart = (Map<ProductBean, Integer>) request.getSession().getAttribute("cart");
+		
+		
 		if(request.getRequestURI().contains("cart")) {
-			Map<CardBean, Integer> cart = (Map<CardBean, Integer>) request.getSession().getAttribute("cart");
-			response.getWriter().append("This is your shopping cart");
-		}
-		
-		else if(request.getRequestURI().contains("login")) {
+			response.getWriter().append("This is your shopping cart\n");
+			response.getWriter().append(cart.toString());
+		} else if(request.getRequestURI().contains("login")) {
 			response.getWriter().append("Please log in");
-		}
+		} else if(params.containsKey("review")) {
+			response.getWriter().append("Review added:\n");
+			response.getWriter().append(request.getParameter("review"));
+		} else if(params.containsKey("addToCart")) {
+			CardModel cards = new CardModel();
+			
+			ProductBean cardToAdd = cards.retrieveCard(request.getParameter("addToCart"));
+					
+			if (cart.containsKey(cardToAdd)) {
+				int currentQnty = cart.get(cardToAdd);
+				cart.put(cardToAdd, currentQnty+1);
+			} else {
+				cart.put(cardToAdd, 1);
+			}
+			
+		} else if(params.containsKey("search")) {
+			CardModel cards = new CardModel();
+			List<ProductBean> products;
+			
+			try {
+				products = cards.search(request.getParameter("search"));
+				request.setAttribute("products", products);
+				for (ProductBean b:products)
+					System.out.println(b.getName() + " Price: " + b.getCost());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+						
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		
-		else {
+		}else {
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
