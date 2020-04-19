@@ -50,7 +50,7 @@ public class Shop extends HttpServlet {
 
 			request.setAttribute("products", cart);
 			
-			String target = "/home.jspx";
+			String target = "/cart.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("review")) {
 			System.out.println("GET | HOME -> REVIEW");

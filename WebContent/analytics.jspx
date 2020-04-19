@@ -132,7 +132,7 @@
                 <tbody>
 	                <c:forEach var="i" items="${requestScope.topTenCards}">
 	    	    		<tr>
-	    	    			<td><IMG src="${i.getImg()}" /></td>
+	    	    			<td><img src="${i.getImg()}" /></td>
 	    	    			<td>${i.getLimit()}</td>
 	    	    			<td>${i.getName()}</td>
 	    	    			<td>${i.getCost()}</td>
