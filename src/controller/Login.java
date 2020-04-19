@@ -72,10 +72,12 @@ public class Login extends HttpServlet {
 					return;
 				} else {
 					// login failed
-					System.out.println("Login failed");
+					throw new Exception("No account associated with that username and password");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				// print error and go back to login
+				request.setAttribute("error", "Login Failed: " + e.getMessage());
 			}
 		} else if (register) {
 			System.out.println("Complete Registration");

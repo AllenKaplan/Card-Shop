@@ -78,6 +78,11 @@ public class Payment extends HttpServlet {
 			} else {
 				// passed
 				// update address data
+				try {
+					userModel.updateAddress(loggedInUser.getUsername(), firstName, lastName, address, city, province, postal);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
 				// update order data
 				request.setAttribute("message", "Order Successfully Completed");
