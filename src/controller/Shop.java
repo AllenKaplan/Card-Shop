@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +38,17 @@ public class Shop extends HttpServlet {
 		Map<String, String[]> params = request.getParameterMap();
 
 		@SuppressWarnings("unchecked")
-		Map<ProductBean, Integer> cart = (Map<ProductBean, Integer>) request.getSession().getAttribute("cart");
-		
+		Map<ProductBean, Integer> cart = (HashMap<ProductBean, Integer>) request.getSession().getAttribute("cart");
+		if (cart == null) {
+			cart = new HashMap<ProductBean, Integer>();
+		}
 		
 		if(request.getRequestURI().contains("cart")) {
 			System.out.println("GET | HOME -> CART");
 			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
+
+			request.setAttribute("products", cart);
 			
 			String target = "/home.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
