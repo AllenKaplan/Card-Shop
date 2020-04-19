@@ -70,7 +70,7 @@ public class Shop extends HttpServlet {
 			List<ProductBean> products;
 			
 			try {
-				products = cards.search(request.getParameter("search"));
+				products = cards.search(request.getParameter("query"));
 				request.setAttribute("products", products);
 				for (ProductBean b:products)
 					System.out.println(b.getName() + " Price: " + b.getCost());
