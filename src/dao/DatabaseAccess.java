@@ -37,6 +37,6 @@ public class DatabaseAccess {
 	 * to the type of access based off this classes two final strings.
 	 * DEVELOPMENT_ACCESS or DEPLOYMENT_ACCESS
 	 */
-	public static DatabaseAccess instance = new DatabaseAccess(DEVELOPMENT_ACCESS);
+	public static DatabaseAccess instance = new DatabaseAccess(DEPLOYMENT_ACCESS);
 
 }
