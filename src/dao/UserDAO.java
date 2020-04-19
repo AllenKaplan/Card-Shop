@@ -117,7 +117,7 @@ public class UserDAO {
 		addAccount.setString(2, newUser.getFirstName());
 		addAccount.setString(3, newUser.getLastName());
 		addAccount.setInt(4, count);
-		addAccount.setString(3, newUser.getAccountType());
+		addAccount.setString(5, newUser.getAccountType());
 		addAccount.executeUpdate();		
 		
 		addLogin.close();  
