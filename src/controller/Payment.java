@@ -79,7 +79,7 @@ public class Payment extends HttpServlet {
 				// passed
 				// update address data
 				try {
-					userModel.updateAddress(firstName, lastName, address, city, province, postal);
+					userModel.updateAddress(loggedInUser.getUsername(), firstName, lastName, address, city, province, postal);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
