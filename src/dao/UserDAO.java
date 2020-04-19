@@ -99,7 +99,7 @@ public class UserDAO {
 		addAddress.setString(3, newUser.getCity());
 		addAddress.setString(4, newUser.getPostal());
 		addAddress.executeUpdate();
-		String addressCount = "select count(addressID) from Addresses";
+		String addressCount = "select max(addressID) from Addresses";
 		PreparedStatement getCount = con.prepareStatement(addressCount);   
 		ResultSet r = getCount.executeQuery();
 		int count = 1; 
@@ -149,8 +149,7 @@ public class UserDAO {
 		
 		addressResult.close();   
 		getAddress.close();   
-		
-		
+				
 		String updateAccount = "update account set fname = ?, lname = ? where username = ?";
 		PreparedStatement updateName = con.prepareStatement(updateAccount);   
 		updateName.setString(1, updatedUser.getFirstName());

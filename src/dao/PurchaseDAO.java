@@ -1,6 +1,7 @@
 package dao;
 
 import bean.PurchaseHistoryBean;
+import bean.UserPurchasesBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +51,29 @@ public class PurchaseDAO {
 			int quantity = ordersResult.getInt("purchases");
 			purchases.add(new PurchaseHistoryBean(number,name,price,quantity,null)); //null image
 		}
+		orders.close();
+		ordersResult.close();
+		con.close();
 		return purchases;		
+	}
+	
+	public ArrayList<UserPurchasesBean> purchasesByUser() throws SQLException{
+		String query = "select username, zip, sum(salePrice*quantity)totalSpent from orders join addresses on orders.deliveryAddress = addresses.addressID group by username, zip";
+		
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement statement = con.prepareStatement(query);   
+		ResultSet results = statement.executeQuery();  	
+		ArrayList<UserPurchasesBean> users = new ArrayList<UserPurchasesBean>();
+		
+		while (results.next())
+		{
+			users.add(new UserPurchasesBean(results.getString("zip"),results.getDouble("totalSpent")));
+		}
+		statement.close();
+		results.close();
+		con.close();
+		return users;
+	
 	}
 	
 	
