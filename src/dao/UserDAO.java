@@ -21,7 +21,7 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	} 
-	
+
 	/**
 	 * Tries to login
 	 * @param username
@@ -33,24 +33,24 @@ public class UserDAO {
 		UserBean user = null;
 		String queryAccount = "select * from logins join accounts on logins.username = accounts.username where logins.username = ? and logins.password = ?";
 		Connection con = this.dataSource.getConnection();   
-		
+
 		PreparedStatement login = con.prepareStatement(queryAccount);   
 		login.setString(1, username);	
 		login.setString(2, password);		
 		ResultSet userResult = login.executeQuery();  
-		
+
 		if (userResult.next()) //if an account exists
 		{    
 			String fname = userResult.getString("fname");
 			String lname = userResult.getString("lname");
 			String accountType = userResult.getString("accountType");
-			
+
 			Integer address = userResult.getInt("address");
 			String street = null;
 			String city = null; 
 			String province = null; 
 			String postal = null;
-			
+
 			//Query for address details
 			String addQuery = "select * from addresses where addressID = ?";
 			PreparedStatement statmentAddress = con.prepareStatement(addQuery);   
@@ -72,7 +72,7 @@ public class UserDAO {
 		con.close(); 
 		return user;   		
 	}
-	
+
 	/**
 	 * Registers a user with the customer account type
 	 * @param username
@@ -83,48 +83,64 @@ public class UserDAO {
 	 */
 	public void register(String username, String password, UserBean newUser) throws Exception {
 		Connection con = this.dataSource.getConnection();   
-		String addLoginQuery = "insert into logins (username,password) values (?,?)";
-		
-		//Add Login
-		PreparedStatement addLogin = con.prepareStatement(addLoginQuery);   
-		addLogin.setString(1, username);
-		addLogin.setString(2, password);
-		addLogin.executeUpdate();
-		
-		//Add Address
-		String addAddressQuery = "insert into Addresses (street,province,city,zip) values (?,?,?,?)";
-		PreparedStatement addAddress = con.prepareStatement(addAddressQuery);   
-		addAddress.setString(1, newUser.getAddress());
-		addAddress.setString(2, newUser.getProvince());
-		addAddress.setString(3, newUser.getCity());
-		addAddress.setString(4, newUser.getPostal());
-		addAddress.executeUpdate();
-		String addressCount = "select max(addressID) from Addresses";
-		PreparedStatement getCount = con.prepareStatement(addressCount);   
-		ResultSet r = getCount.executeQuery();
-		int count = 1; 
-		while (r.next())
+
+		//Check if exists
+		String checkExists = "select * from logins where username = ?";
+		PreparedStatement check = con.prepareStatement(checkExists);   
+		check.setString(1, username);
+		ResultSet result = check.executeQuery();
+		if (result.next())
 		{
-			count = r.getInt(1);
-		}	
-		
-		//Add Account
-		String addAccountQuery = "insert into Accounts (username, fname, lname, email, address, phone, accountType) values (?,?,?,'',?,'',?)";
-		PreparedStatement addAccount = con.prepareStatement(addAccountQuery);   
-		addAccount.setString(1, username);
-		addAccount.setString(2, newUser.getFirstName());
-		addAccount.setString(3, newUser.getLastName());
-		addAccount.setInt(4, count);
-		addAccount.setString(5, newUser.getAccountType());
-		addAccount.executeUpdate();		
-		
-		addLogin.close();  
-		addAddress.close();
-		addAccount.close();
-		r.close();
-		con.close(); 
+			check.close();
+			result.close();
+			throw new Exception("username already exists");
+		}
+		else
+		{
+			//Add Login
+			String addLoginQuery = "insert into logins (username,password) values (?,?)";
+			PreparedStatement addLogin = con.prepareStatement(addLoginQuery);   
+			addLogin.setString(1, username);
+			addLogin.setString(2, password);
+			addLogin.executeUpdate();
+
+			//Add Address
+			String addAddressQuery = "insert into Addresses (street,province,city,zip) values (?,?,?,?)";
+			PreparedStatement addAddress = con.prepareStatement(addAddressQuery);   
+			addAddress.setString(1, newUser.getAddress());
+			addAddress.setString(2, newUser.getProvince());
+			addAddress.setString(3, newUser.getCity());
+			addAddress.setString(4, newUser.getPostal());
+			addAddress.executeUpdate();
+			String addressCount = "select max(addressID) from Addresses";
+			PreparedStatement getCount = con.prepareStatement(addressCount);   
+			ResultSet r = getCount.executeQuery();
+			int count = 1; 
+			while (r.next())
+			{
+				count = r.getInt(1);
+			}	
+
+			//Add Account
+			String addAccountQuery = "insert into Accounts (username, fname, lname, email, address, phone, accountType) values (?,?,?,'',?,'',?)";
+			PreparedStatement addAccount = con.prepareStatement(addAccountQuery);   
+			addAccount.setString(1, username);
+			addAccount.setString(2, newUser.getFirstName());
+			addAccount.setString(3, newUser.getLastName());
+			addAccount.setInt(4, count);
+			addAccount.setString(5, newUser.getAccountType());
+			addAccount.executeUpdate();		
+
+			check.close();
+			result.close();
+			addLogin.close();  
+			addAddress.close();
+			addAccount.close();
+			r.close();
+			con.close(); 
+		}
 	}
-	
+
 	/**
 	 * Updates name and address for the given user 
 	 * @param updatedUser - contains info that should be updated
@@ -132,13 +148,13 @@ public class UserDAO {
 	public void updateUser(UserBean updatedUser) throws Exception {
 		UserBean user = null;
 		String queryAccount = "select address from account where username = ?";
-		
+
 		Connection con = this.dataSource.getConnection();   
-		
+
 		PreparedStatement getAddress = con.prepareStatement(queryAccount);   
 		getAddress.setString(1, updatedUser.getUsername());	
 		ResultSet addressResult = getAddress.executeQuery();  
-		
+
 		int address;
 		if (addressResult.next()) //if an address exists
 		{
@@ -146,10 +162,10 @@ public class UserDAO {
 		} else {
 			throw new Exception("Could not find address");
 		}
-		
+
 		addressResult.close();   
 		getAddress.close();   
-				
+
 		String updateAccount = "update account set fname = ?, lname = ? where username = ?";
 		PreparedStatement updateName = con.prepareStatement(updateAccount);   
 		updateName.setString(1, updatedUser.getFirstName());
@@ -157,7 +173,7 @@ public class UserDAO {
 		updateName.setString(3, updatedUser.getUsername());
 		updateName.executeUpdate(); 
 		updateName.close();
-		
+
 		String updateAddress = "update address set street = ?, province = ?, city = ?, zip = ? where addressId = ?";
 		PreparedStatement updateAddressInfo = con.prepareStatement(updateAddress);
 		updateAddressInfo.setString(1, updatedUser.getAddress());
