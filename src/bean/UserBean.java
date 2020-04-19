@@ -7,9 +7,7 @@ public class UserBean {
 	private String city;
 	private String province;
 	private String postal;
-	private String accountType;
-	
-	
+	private String accountType;	
 	
 	public UserBean(String firstName, String lastName, String address, String city, String province, String postal, String accountType) {
 		super();
