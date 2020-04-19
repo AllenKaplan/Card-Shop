@@ -52,7 +52,6 @@
 								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
 								<td>
-								
     								<button type="submit" name="review" value="${product.id}" form="review_form">Review</button>
 								</td>
 								<td>

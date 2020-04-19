@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.UserBean;
 import model.UserModel;
 
 /**
@@ -63,12 +64,11 @@ public class Login extends HttpServlet {
 		if (login) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
 			try {
-				String accountType = userModel.login(username, password); 
-				System.out.println("ACC TYPE: " + accountType);
-				if (accountType != null) {
+				UserBean loggedInUser= userModel.login(username, password);
+				if (loggedInUser != null) {
 					// On successful login, set accountType
-					request.getSession().setAttribute("accountType", accountType);
-					response.sendRedirect("/EECS4413_Project/payment");
+					request.getSession().setAttribute("loggedInUser", loggedInUser);
+					response.sendRedirect("/EECS4413_Project/home");
 					return;
 				} else {
 					// login failed
