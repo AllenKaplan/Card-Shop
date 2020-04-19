@@ -22,24 +22,6 @@
 				</div>
 				
 			</div>
-			
-<%-- 			TESTING FOR EACH BECAUSE IT WAS BROKEN -ALLEN	
-				<h3>${products}</h3> <br />
-				${products[0]}<br/>
-				${products[0].name}<br/>
-				${products[1].name}<br/>
-				${products[2].name}<br/>
-				
-				    <h3>From 1 to 10</h3>
-		      <c:forEach var="i" begin="1" end="10">
-		        <tr>
-		        <td>${i}<br/></td>
-		        </tr>
-		      </c:forEach>
-				
-				<c:forEach items="${products}" var="product">
-					<c:out value="${product.name}"></c:out> <br/>
-				</c:forEach> --%>
 				
 			<div class="body">
 				

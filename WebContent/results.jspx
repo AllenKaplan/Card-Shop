@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<directive.page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true" />
+	<output doctype-root-element="html" doctype-public="-//W3C//DTD XHTML 1.0 Transition al//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<link rel="StyleSheet"
+				href="${pageContext.request.contextPath}/resources/css/home.css" type="text/css"
+				title="cse4413" media="screen, print" />
+			<link rel="StyleSheet"
+				href="${pageContext.request.contextPath}/resources/css/payment.css" type="text/css"
+				title="cse4413" media="screen, print" />
+			<title>Payment</title>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js">;</script>
+		</head>
+		<body>
+			<div class="header">
+				<h2>Massadora Card Shop</h2>
+				<div class="search">
+					<input type="text"></input>
+					<button>Go</button>
+				</div>
+			</div>
+			<h2 style="text-align:center; margin-top: 30px">
+				${message}
+			</h2 >
+		</body>
+	</html>
+</root>
