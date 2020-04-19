@@ -9,7 +9,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import bean.CardBean;
 import bean.UserBean;
 
 public class UserDAO {
@@ -37,10 +36,10 @@ public class UserDAO {
 		String queryAccount = "select * from logins join accounts on logins.username = accounts.number where logins.username = ? and logins.password = ?"; 
 		Connection con = this.dataSource.getConnection();   
 		
-		PreparedStatement statementLogin = con.prepareStatement(queryAccount);   
-		statementLogin.setString(1, username);	
-		statementLogin.setString(2, password);		
-		ResultSet userResult = statementLogin.executeQuery();  
+		PreparedStatement login = con.prepareStatement(queryAccount);   
+		login.setString(1, username);	
+		login.setString(2, password);		
+		ResultSet userResult = login.executeQuery();  
 		
 		if (userResult.next()) //if an account exists
 		{    
@@ -71,7 +70,7 @@ public class UserDAO {
 			statmentAddress.close();   
 		}   
 		userResult.close();   
-		statementLogin.close();   
+		login.close();   
 		con.close(); 
 		return user;   		
 	}
@@ -113,12 +112,18 @@ public class UserDAO {
 		
 		//Add Account
 		String addAccountQuery = "insert into Accounts (username, fname, lname, email, address, phone, accountType) values (?,?,?,'',?,'',?)";
-		PreparedStatement addAccount = con.prepareStatement(addAddressQuery);   
+		PreparedStatement addAccount = con.prepareStatement(addAccountQuery);   
 		addAccount.setString(1, username);
 		addAccount.setString(2, newUser.getFirstName());
 		addAccount.setString(3, newUser.getLastName());
 		addAccount.setInt(4, count);
 		addAccount.setString(3, newUser.getAccountType());
 		addAccount.executeUpdate();		
+		
+		addLogin.close();  
+		addAddress.close();
+		addAccount.close();
+		r.close();
+		con.close(); 
 	}
 }
