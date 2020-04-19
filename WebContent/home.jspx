@@ -17,19 +17,23 @@
 			<div class="header">
 				<h2>Massadora Card Shop</h2>
 				<div class="search">
-					<form action="Shop" method="post">
+					<form action="home" method="post">
 						<input type="text" name="query"></input>
-    					<input type="submit" name="search" value="go" />
+    					<input type="submit" name="search" value="Search" />
 					</form>
 				</div>
 				
 			</div>
 			<div class="body">
 				
+									<form action="home" method="post" id="review_form"></form>
+									
+									<form action="home" method="post" id="cart_form"></form>
 				<table class="my-table">
 					<thead>
 						<tr>
-							<th width="20%">Image</th>
+							<th width="15%">Image</th>
+							<th width="5%">Card No.</th>
 							<th width="15%">Name</th>
 							<th width="25%">Description</th>
 							<th width="10%">Limit</th>
@@ -42,23 +46,16 @@
 						<c:forEach items="${products}" var="product">
 							<tr>
 								<td><img class="image" src="${product.img}" /></td>
-								<td><c:out value="${product.name}" /></td> 
+								<td>${product.id}</td>
+								<td>${product.name}</td> 
 								<td>${product.description}</td>
 								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
 								<td>
-<<<<<<< HEAD
-									<form action="shop" method="post">
-=======
-									<form action="Shop" method="post">
->>>>>>> ccef971b306adf5eeeeb33436894f9dfb8b89cc5
-    									<input type="submit" name="review" value="${product.name}" />
-									</form>
+    								<button type="submit" name="review" value="${product.id}" form="review_form">Review</button>
 								</td>
 								<td>
-									<form action="Shop" method="post">
-    									<button type="submit" name="addToCart" value="${product.name}" />
-									</form>
+    								<button type="submit" name="addToCart" value="${product.id}" form="cart_form">Add to Cart</button>
 								</td>
 							</tr>
 						</c:forEach>
