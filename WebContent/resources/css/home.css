@@ -1,8 +1,8 @@
 @charset "ISO-8859-1";
 
 body, header{
-	font-family: sans-serif;
-  background: #c4d3f6;
+  font-family: sans-serif;
+  background: black;
 }
 
 .header {
@@ -12,6 +12,10 @@ body, header{
 	padding: 0 20px;
 	display: flex;
 	justify-content: space-between;
+}
+
+h2 {
+	color: white;
 }
 
 .search {
@@ -69,7 +73,7 @@ table {
   padding: 30px 30px 30px 30px;
   width: 100%;
   display: table;
-  margin: 0;
+  margin: 0 5em 0 5em;
   border-collapse: separate;
   border-spacing: 0px
 }
@@ -86,9 +90,9 @@ tr {
 }
 
 th {
-  color: #ffffff;
+ 	color: #ffffff;
 	background: #6790EE;
-  padding: 1rem;
+ 	padding: 1rem;
 }
 
 tr:hover{

@@ -18,7 +18,7 @@
 				<h2>Massadora Card Shop</h2>
 				<div class="search">
 					<input type="text"></input>
-					<BUTTON onclick="alert(value)" value="GO"></BUTTON>
+					<BUTTON onclick="alert(value)">Search</BUTTON>
 				</div>
 				
 			</div>
@@ -28,10 +28,12 @@
 					<thead>
 						<tr>
 							<th width="20%">Image</th>
-							<th width="20%">Name</th>
-							<th width="30%">Description</th>
+							<th width="15%">Name</th>
+							<th width="25%">Description</th>
 							<th width="10%">Limit</th>
 							<th width="10%">Cost</th>
+							<th width="5%">Leave Review</th>
+							<th width="5%">Add to Cart</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -42,6 +44,16 @@
 								<td>${product.description}</td>
 								<td>${product.limit}</td>
 								<td>$ ${product.cost}</td>
+								<td>
+									<form action="review" method="post">
+    								<input type="submit" name="Review" value="${product.name}" />
+									</form>
+								</td>
+								<td>
+									<form action="cart" method="post">
+    								<input type="submit" name="Cart" value="${product.name}" />
+									</form>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
