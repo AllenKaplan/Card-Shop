@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,16 +38,20 @@ public class Shop extends HttpServlet {
 		Map<String, String[]> params = request.getParameterMap();
 
 		@SuppressWarnings("unchecked")
-		Map<ProductBean, Integer> cart = (Map<ProductBean, Integer>) request.getSession().getAttribute("cart");
-		
+		Map<ProductBean, Integer> cart = (HashMap<ProductBean, Integer>) request.getSession().getAttribute("cart");
+		if (cart == null) {
+			cart = new HashMap<ProductBean, Integer>();
+		}
 		
 		if(request.getRequestURI().contains("cart")) {
 			System.out.println("GET | HOME -> CART");
 			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
-		} else if(request.getRequestURI().contains("login")) {
-			System.out.println("GET | HOME -> LOGIN");
-			response.getWriter().append("Please log in");
+
+			request.setAttribute("products", cart);
+			
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("review")) {
 			System.out.println("GET | HOME -> REVIEW");
 			response.getWriter().append("Review added:\n");
@@ -63,14 +68,16 @@ public class Shop extends HttpServlet {
 			} else {
 				cart.put(cardToAdd, 1);
 			}
-			
+
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("search") && request.getParameter("search") != null) {
 			System.out.println("GET | HOME -> SEARCH");
 			CardModel cards = new CardModel();
 			List<ProductBean> products;
 			
 			try {
-				products = cards.search(request.getParameter("search"));
+				products = cards.search(request.getParameter("query"));
 				request.setAttribute("products", products);
 				for (ProductBean b:products)
 					System.out.println(b.getName() + " Price: " + b.getCost());

@@ -7,10 +7,11 @@ public class UserBean {
 	private String city;
 	private String province;
 	private String postal;
+	private String accountType;
 	
 	
 	
-	public UserBean(String firstName, String lastName, String address, String city, String province, String postal) {
+	public UserBean(String firstName, String lastName, String address, String city, String province, String postal, String accountType) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -18,6 +19,7 @@ public class UserBean {
 		this.city = city;
 		this.province = province;
 		this.postal = postal;
+		this.accountType = accountType;
 	}
 	
 	public String getFirstName() {
@@ -56,6 +58,11 @@ public class UserBean {
 	public void setPostal(String postal) {
 		this.postal = postal;
 	}
-	
+	public String getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
 	
 }

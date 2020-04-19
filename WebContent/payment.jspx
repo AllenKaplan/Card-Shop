@@ -33,14 +33,14 @@
 									First Name:
 								</label>
 								<br />
-								<input class="payment-input" type="text" name="firstName" id="firstName"></input>
+								<input class="payment-input" type="text" name="firstName" id="firstName" value="${ firstName }"></input>
 							</div>
 							<div class="input">
 								<label for="lastName">
 									Last Name:
 								</label>
 								<br />
-								<input class="payment-input" type="text" name="lastName" id="lastName"></input>
+								<input class="payment-input" type="text" name="lastName" id="lastName" value="${ lastName }"></input>
 							</div>
 						</div>
 						<BR />
@@ -50,14 +50,14 @@
 									Address:
 								</label>
 								<br />
-								<input class="payment-input" type="text" name="address" id="address"></input>
+								<input class="payment-input" type="text" name="address" id="address" value="${ address }"></input>
 							</div>
 							<div class="input">
 								<label for="city">
 									City:
 								</label>
 								<br />
-								<input class="payment-input" type="text" name="city" id="city"></input>
+								<input class="payment-input" type="text" name="city" id="city" value="${ city }"></input>
 							</div>
 						</div>
 						<BR />
@@ -67,14 +67,14 @@
 									Province:
 								</label>
 								<br />
-								<input class="payment-input" type="text" name="province" id="province"></input>
+								<input class="payment-input" type="text" name="province" id="province" value="${ province }"></input>
 							</div>
 							<div class="input">
 								<label for="postal">
 									Postal Code:
 								</label>
 								<br />
-								<input class="payment-input" type="text" name="postal" id="postal"></input>
+								<input class="payment-input" type="text" name="postal" id="postal" value="${ postal }"></input>
 							</div>
 						</div>
 					</fieldset>

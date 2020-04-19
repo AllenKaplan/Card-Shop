@@ -30,7 +30,7 @@ public class CardDAO {
 		/*
 		select * from cards where id=id_number
 		*/
-		ProductBean testItem = new CardBean("testName", "testDesc", 420.69, 10, null);
+		ProductBean testItem = new CardBean(0, "testName", "testDesc", 420.69, 10, null);
 		
 		return testItem;
 	}
@@ -48,11 +48,12 @@ public class CardDAO {
 		ResultSet r = p.executeQuery();   
 		while (r.next())
 		{    
+			int id = r.getInt("number");
 			String name = r.getString("name");
 			String desc = r.getString("description");
 			Double price = Double.parseDouble(r.getString("sellingPrice"));
 			Integer rating = Integer.parseInt(r.getString("Limit"));				
-			products.add(new CardBean(name, desc, price, rating, null));
+			products.add(new CardBean(id, name, desc, price, rating, null));
 		}   
 		r.close();   
 		p.close();   
@@ -69,11 +70,12 @@ public class CardDAO {
 		ResultSet r = p.executeQuery();   
 		while (r.next())
 		{    
+			int id = r.getInt("number");
 			String name = r.getString("name");
 			String desc = r.getString("description");
 			Double price = Double.parseDouble(r.getString("sellingPrice"));
 			Integer rating = Integer.parseInt(r.getString("Limit"));				
-			products.add(new CardBean(name, desc, price, rating, null));
+			products.add(new CardBean(id, name, desc, price, rating, null));
 		}   
 		r.close();   
 		p.close();   
