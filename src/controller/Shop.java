@@ -44,9 +44,9 @@ public class Shop extends HttpServlet {
 			System.out.println("GET | HOME -> CART");
 			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
-		} else if(request.getRequestURI().contains("login")) {
-			System.out.println("GET | HOME -> LOGIN");
-			response.getWriter().append("Please log in");
+			
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("review")) {
 			System.out.println("GET | HOME -> REVIEW");
 			response.getWriter().append("Review added:\n");
@@ -63,7 +63,9 @@ public class Shop extends HttpServlet {
 			} else {
 				cart.put(cardToAdd, 1);
 			}
-			
+
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("search") && request.getParameter("search") != null) {
 			System.out.println("GET | HOME -> SEARCH");
 			CardModel cards = new CardModel();
