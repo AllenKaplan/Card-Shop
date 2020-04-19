@@ -39,9 +39,15 @@ public class Analytics extends HttpServlet {
 			
 			try {
 				List<ProductBean> cards = cardModel.retrieveCards();
+				
+				System.out.println("Start of Cards:");
 				for(ProductBean i: cards) {
-					System.out.println(i.getName() + " " + i.getCost() + " " + i.getImages() + " " + i.getRating() + " " + i.getDescription());
+					System.out.println(i.getName() + " " + i.getCost() + " " + i.getImg() + " " + i.getDescription());
 				}
+				System.out.println("End of Cards");
+				
+				request.setAttribute("topTenCards", cards);
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

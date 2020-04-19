@@ -114,6 +114,53 @@
                 
             </table>
         </div>
+        
+        <h2>Test area</h2>
+        
+        <div class="row mb-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Preview</th>
+                        <th scope="col">Card Number</th>
+                        <th scope="col">Card Name</th>
+                        <th scope="col">Card Type</th>
+                        <!-- <th scope="col">Quantity</th> -->
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+	                <c:forEach var="i" items="${requestScope.topTenCards}">
+	    	    		<tr>
+	    	    			<td><IMG src="${i.getImg()}" /></td>
+	    	    			<td>${i.getLimit()}</td>
+	    	    			<td>${i.getName()}</td>
+	    	    			<td>${i.getCost()}</td>
+	    	    		</tr>
+		        	</c:forEach>
+	        	</tbody>
+                <!-- 
+                    <tr>
+                        <td><img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452"/></td>
+                        <td>000</td>
+                        <td>Rulers Blessing</td>
+                        <td>Specified Slot</td>
+                        <td>1</td>
+                        <td class="price">$20.00</td>
+                    </tr>
+                    <tr>
+                        <td><img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452"/></td>
+                        <td>000</td>
+                        <td>Rulers Blessing</td>
+                        <td>Specified Slot</td>
+                        <td>4</td>
+                        <td class="price">$11.00</td>
+                    </tr>
+                </tbody>
+                 -->                
+            </table>
+        </div>
+        	
 
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
