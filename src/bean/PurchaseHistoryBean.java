@@ -6,11 +6,11 @@ package bean;
 public class PurchaseHistoryBean {
 	private int cardNumber; 
 	private String cardName;
-	private int purchasePrice;
+	private double purchasePrice;
 	private int quantitySold;
 	private String image;
 	
-	public PurchaseHistoryBean(int cardNumber,String cardName,int purchasePrice, int quantitySold,String image)
+	public PurchaseHistoryBean(int cardNumber,String cardName,double purchasePrice, int quantitySold,String image)
 	{
 		this.cardNumber = cardNumber;
 		this.cardName = cardName;
@@ -27,7 +27,7 @@ public class PurchaseHistoryBean {
 		return cardName;
 	}
 
-	public int getPurchasePrice() {
+	public double getPurchasePrice() {
 		return purchasePrice;
 	}
 
