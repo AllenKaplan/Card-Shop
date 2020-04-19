@@ -2,7 +2,7 @@ package dao;
 
 /**
  * Scroll to the BOTTOM of this class and set the value of the instance 
- * constructor parameter to the type of access you want to use
+ * constructor argument to the type of access you want to use
  */
 public class DatabaseAccess {
 
@@ -33,10 +33,10 @@ public class DatabaseAccess {
 	}
 
 	/**
-	 * Set the value of access parameter in constructor below
+	 * Set the value of access argument in constructor below
 	 * to the type of access based off this classes two final strings.
 	 * DEVELOPMENT_ACCESS or DEPLOYMENT_ACCESS
 	 */
-	public static DatabaseAccess instance = new DatabaseAccess(DEVELOPMENT_ACCESS);
+	public static DatabaseAccess instance = new DatabaseAccess(DEPLOYMENT_ACCESS);
 
 }
