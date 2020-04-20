@@ -51,7 +51,7 @@ public class Payment extends HttpServlet {
 		context = getServletContext();
 		// Instantiate Loan object
 		try {
-			UserModel userModel = new UserModel();
+			UserModel userModel = UserModel.getInstance();
 			context.setAttribute("userModel", userModel);
 		} catch (Exception e) {
 			// set error?

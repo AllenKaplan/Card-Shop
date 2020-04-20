@@ -1,14 +1,23 @@
 package model;
 
 import bean.UserBean;
+import dao.PurchaseDAO;
 import dao.UserDAO;
 
 public class UserModel {
 	private UserDAO userDAO;
 	
-	public UserModel() throws Exception {
-		userDAO = new UserDAO();
-	}
+    private static UserModel instance;
+	
+    public static UserModel getInstance() throws ClassNotFoundException{
+        if (instance == null) {
+            instance = new UserModel();
+            instance.userDAO = new UserDAO();
+        }
+        return instance;
+    }
+    
+    private UserModel() {}
 	
 	public UserBean login(String username, String password) throws Exception {
 		String[] inputs = { username, password };

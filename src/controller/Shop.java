@@ -49,7 +49,7 @@ public class Shop extends HttpServlet {
 			response.getWriter().append(cart.toString());
 
 			request.setAttribute("products", cart);
-			
+
 			String target = "/cart.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("review")) {
@@ -78,6 +78,9 @@ public class Shop extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			System.out.println("This is the shopping cart");
+			System.out.println(cart);
 					
 
 			request.setAttribute("products", cart);

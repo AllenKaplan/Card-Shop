@@ -80,7 +80,7 @@ public class PurchaseDAO {
 		orders.close();
 		ordersResult.close();
 		con.close();
-		return purchases;		
+		return purchases;
 	}
 	
 	public ArrayList<UserPurchasesBean> purchasesByUser() throws SQLException{
@@ -101,7 +101,4 @@ public class PurchaseDAO {
 		return users;
 	
 	}
-	
-	
-
 }

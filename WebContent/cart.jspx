@@ -38,6 +38,18 @@
 					</tr>
 				</thead>
 				<tbody>
+					
+					<c:forEach var="item" items="${requestScope.products}">
+						<td><img src="${ item.key.getImg() }"/></td>
+						<td>${ item.key.getId() }</td>
+						<td>${ item.key.getName() }</td>
+						<td>wow</td>
+						<td>${ item.value }</td>
+						<td>${ item.key.getCost() }</td>
+					
+					</c:forEach>
+					
+					<!-- 
 					<tr>
 						<td><img class="image"
 							src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
@@ -73,6 +85,7 @@
 						<td><button class="btn btn-primary btn-lg btn-block"
 								type="submit">Checkout</button></td>
 					</tr>
+					-->
 				</tbody>
 
 			</table>

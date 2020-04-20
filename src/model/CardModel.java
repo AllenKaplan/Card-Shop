@@ -19,6 +19,7 @@ public class CardModel {
         return instance;
     }
 
+    private CardModel() {}
 	
 	public List<ProductBean> retrieveCards() throws SQLException{
 		return card.retrieveAll();
