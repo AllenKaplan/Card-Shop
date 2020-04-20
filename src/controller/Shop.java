@@ -87,6 +87,7 @@ public class Shop extends HttpServlet {
 					cart.put(card, currentQnty+1);
 				} else {
 					cart.put(cardToAdd, 1);
+
 				}
 				
 			} catch (SQLException e) {
@@ -119,7 +120,6 @@ public class Shop extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 		
 		} else if (params.containsKey("checkout") && request.getParameter("checkout") != null) {
-			
 			response.sendRedirect(redirectPath + "payment");
 		} else if (params.containsKey("toCart") && request.getParameter("toCart") != null) {
 			String target = "/cart.jspx";
