@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 
 import bean.CardBean;
 import bean.ProductBean;
+import bean.ReviewBean;
+import bean.UserPurchasesBean;
 
 public class CardDAO {
 	private DataSource dataSource;
@@ -132,6 +134,52 @@ public class CardDAO {
 		products.add(testItem2);
 		products.add(testItem3);
 		*/
+	}
+	
+	/**
+	 * Get all reviews of this particular card ID
+	 * @param cardID
+	 * @return
+	 * @throws SQLException
+	 */
+	public ArrayList<ReviewBean> getReview(int cardID) throws SQLException
+	{
+		ArrayList<ReviewBean> reviews = new ArrayList<ReviewBean>();
+		String query = "select * from CardReview where number = ?";
+		
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement statement = con.prepareStatement(query); 
+		statement.setInt(1, cardID);
+		ResultSet results = statement.executeQuery();  	
+		
+		while (results.next())
+		{
+			reviews.add(new ReviewBean(cardID, results.getInt("rating"), results.getString("content")));
+		}
+		statement.close();
+		results.close();
+		con.close();
+		return reviews; 
+	}
+	
+	/**
+	 * Add review to a card
+	 * @param review
+	 * @throws SQLException 
+	 */
+	public void addReview(ReviewBean review) throws SQLException
+	{
+		String query = "insert into CardReview (number,rating,content) values (?,?,?)";
+		
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement statement = con.prepareStatement(query); 
+		statement.setInt(1, review.getCardID());
+		statement.setInt(2, review.getRating());
+		statement.setString(3, review.getContent());
+		statement.executeUpdate();  	
+		
+		statement.close();
+		con.close();
 	}
 		
 }
