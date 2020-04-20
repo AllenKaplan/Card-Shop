@@ -2,12 +2,14 @@
 <root xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0"> <directive.page
-	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	session="true" /> <output doctype-root-element="html"
-	doctype-public="-//W3C//DTD XHTML 1.0 Transition al//EN"
-	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-	omit-xml-declaration="true" />
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0"> 
+	<directive.page
+		contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+		session="true" /> 
+	<output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transition al//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8"/>
@@ -24,76 +26,72 @@
 
 		<h1 class="text-center m-4">Card Checkout</h1>
 
-		<form action="">
+		<form action="home" method="post" id="checkout_form"></form>
 
-			<table class="table">
-				<thead>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Preview</th>
+					<th scope="col">Card Number</th>
+					<th scope="col">Card Name</th>
+					<th scope="col">Card Type</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<c:forEach var="item" items="${sessionScope.cart}">
 					<tr>
-						<th scope="col">Preview</th>
-						<th scope="col">Card Number</th>
-						<th scope="col">Card Name</th>
-						<th scope="col">Card Type</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					
-					<c:forEach var="item" items="${requestScope.products}">
 						<td><img src="${ item.key.getImg() }"/></td>
 						<td>${ item.key.getId() }</td>
 						<td>${ item.key.getName() }</td>
 						<td>wow</td>
 						<td>${ item.value }</td>
 						<td>${ item.key.getCost() }</td>
-					
-					</c:forEach>
-					
-					<!-- 
-					<tr>
-						<td><img class="image"
-							src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
-						<td>000</td>
-						<td>Rulers Blessing</td>
-						<td>Specified Slot</td>
-						<td><input type="number" value="1"/></td>
-						<td class="price">$20.00</td>
 					</tr>
-					<tr>
-						<td><img class="image"
-							src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
-						<td>000</td>
-						<td>Rulers Blessing</td>
-						<td>Specified Slot</td>
-						<td><input type="number" value="1"/></td>
-						<td class="price">$11.00</td>
-					</tr>
-					<tr id="total">
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>Total:</td>
-						<td class="price">$11.00</td>
-					</tr>
-					<tr id="total">
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><button class="btn btn-primary btn-lg btn-block"
-								type="submit">Checkout</button></td>
-					</tr>
-					-->
-				</tbody>
+				</c:forEach>
+				
+				<!-- 
+				<tr>
+					<td><img class="image"
+						src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
+					<td>000</td>
+					<td>Rulers Blessing</td>
+					<td>Specified Slot</td>
+					<td><input type="number" value="1"/></td>
+					<td class="price">$20.00</td>
+				</tr>
+				<tr>
+					<td><img class="image"
+						src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
+					<td>000</td>
+					<td>Rulers Blessing</td>
+					<td>Specified Slot</td>
+					<td><input type="number" value="1"/></td>
+					<td class="price">$11.00</td>
+				</tr>
+				<tr id="total">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>Total:</td>
+					<td class="price">$11.00</td>
+				</tr>
+				-->
+				<tr id="total">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><button class="btn btn-primary btn-lg btn-block" type="submit" name="checkout"
+							value="true" form="checkout_form">Checkout</button></td>
+				</tr>
+			</tbody>
 
-			</table>
-
-		</form>
-
-
-
+		</table>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
