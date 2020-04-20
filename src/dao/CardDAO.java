@@ -84,7 +84,7 @@ public class CardDAO {
 			String name = r.getString("name");
 			String desc = r.getString("description");
 			Double price = Double.parseDouble(r.getString("sellingPrice"));
-			Integer rating = Integer.parseInt(r.getString("Limit"));				
+			Integer rating = Integer.parseInt(r.getString("Limit"));	
 			products.add(new CardBean(id, name, desc, price, rating, null));
 		}   
 		r.close();   

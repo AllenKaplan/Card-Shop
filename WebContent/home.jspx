@@ -63,7 +63,7 @@
 					<tbody>
 						<c:forEach items="${products}" var="product">
 							<tr>
-								<td><img class="image" src="${product.img}" /></td>
+								<td style='text-align:center'><img class="image" src="${product.img}" /></td>
 								<td style='text-align:center'>${product.id}</td>
 								<td>${product.name}</td> 
 								<td>${product.description}</td>
