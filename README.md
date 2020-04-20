@@ -1,8 +1,18 @@
 # Card-Shop
-## How to deploy and run Card Shop
+## Overview
 
-## How to contribute to Card Shop
+## Deploying Locally
 
-## File structure
+Deploying locally is quite simple! In order to do so, you have to have the following programs and frameworks set up:
 
-## Card Shop on the cloud
+Java EE
+Tomcat
+Eclipse Java EE Edition (Recommended)
+
+Once you have all of these included, git clone the repository and you should be ready to go!
+
+Note that sometimes the Web.xml file can cause exceptions to be thrown when run locally. If this happens, you need to change the redirectPath context-parameter value to be the name of the Card-Shop folder on your local machine. By default, this will be set to the root path "/".
+
+## Deploying to Cloud
+
+## File Structure

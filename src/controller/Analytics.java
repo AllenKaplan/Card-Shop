@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.CardBean;
-import bean.ProductBean;
 import bean.PurchaseHistoryBean;
 import bean.UserBean;
 import bean.UserPurchasesBean;
@@ -29,9 +26,9 @@ public class Analytics extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String[] MonthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+//	private String[] MonthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
-	private CardModel cardModel;
+//	private CardModel cardModel;
 	private PurchaseModel purchaseModel;
 	
 	private static final String CARDS_SOLD = "cardsSold";
@@ -43,7 +40,7 @@ public class Analytics extends HttpServlet {
         super();
         try {
 			purchaseModel = PurchaseModel.getInstance();
-			cardModel = CardModel.getInstance();
+//			cardModel = CardModel.getInstance();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
