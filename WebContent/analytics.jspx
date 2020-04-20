@@ -45,7 +45,7 @@
 							<td>${ i.getCardNumber() }</td>
 							<td>${ i.getCardName() }</td>
 							<td>${ i.getQuantitySold() }</td>
-							<td>${ i.getPurchasePrice() }</td>
+							<td><f:formatNumber value="${ i.getPurchasePrice() }" type="currency" /></td>
 						</tr>
 					</c:forEach>
 
