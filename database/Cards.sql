@@ -23,3 +23,9 @@ CREATE TABLE CardMarket(
     FOREIGN KEY (number) REFERENCES Cards(number),
     CONSTRAINT notNegative CHECK (sellingPrice>=0 AND stock>=0)
 );
+
+CREATE TABLE CardImages(
+    cardNumber int not null,
+    image varchar(500),
+    FOREIGN KEY (cardNumber) REFERENCES Cards(number)
+);
