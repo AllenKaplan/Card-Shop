@@ -9,15 +9,16 @@ import dao.CardDAO;
 public class CardModel {
 	private CardDAO card;
 	
+    private static CardModel instance;
 	
-	public CardModel() {
-		try {
-			card = new CardDAO();
-		} catch (Exception e) {
-			
-		}
-		
-	}
+    public static CardModel getInstance() throws ClassNotFoundException{
+        if (instance == null) {
+            instance = new CardModel();
+            instance.card = new CardDAO();
+        }
+        return instance;
+    }
+
 	
 	public List<ProductBean> retrieveCards() throws SQLException{
 		return card.retrieveAll();
