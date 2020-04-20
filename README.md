@@ -1,8 +1,8 @@
 # Card-Shop
 
-## Link to Shop
+## Shop
 
-THE CLOUD APPLICATION CAN BE FOUND HERE: https://eecs4413-cardshop.mybluemix.net/home 
+The deployed application can be found here: https://eecs4413-cardshop.mybluemix.net/home 
 
 ## Overview
 The Card Shop is an interactive e-commerce platform based on the fictional store from the television Series Hunter x Hunter. The Card Shop is an interpretation of the card shop from the series with all cards available for purchase. Cards are represented by an id, a class rating (SS, S, A...F), type category and limit (on the number of cards that can be purchased). Users are able to query the store through a search box or by card categories such as class rating or type. Further, the  platform provides REST endpoints for users who are looking to get card and order information directly. Through REST endpoints, partners can integrate the Card Shop platform into their services.
