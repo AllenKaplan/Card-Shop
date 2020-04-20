@@ -39,13 +39,13 @@
 				</thead>
 				<tbody>
 					
-					<c:forEach var="item" items="${requestScope.cart}">
+					<c:forEach var="item" items="${requestScope.products}">
+						<td><img src="${ item.key.getImg() }"/></td>
+						<td>${ item.key.getId() }</td>
+						<td>${ item.key.getName() }</td>
 						<td>wow</td>
-						<td>wow</td>
-						<td>wow</td>
-						<td>wow</td>
-						<td>wow</td>
-						<td>wow</td>
+						<td>${ item.value }</td>
+						<td>${ item.key.getCost() }</td>
 					
 					</c:forEach>
 					

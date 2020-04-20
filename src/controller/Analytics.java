@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.CardBean;
 import bean.ProductBean;
+import bean.PurchaseHistoryBean;
 import model.CardModel;
+import model.PurchaseModel;
 
 /**
  * Servlet implementation class CardShop
@@ -23,6 +25,7 @@ public class Analytics extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private CardModel cardModel = new CardModel();
+	private PurchaseModel purchaseModel = new PurchaseModel();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,14 +42,10 @@ public class Analytics extends HttpServlet {
 			
 			try {
 				List<ProductBean> cards = cardModel.retrieveCards();
-				
-				System.out.println("Start of Cards:");
-				for(ProductBean i: cards) {
-					System.out.println(i.getName() + " " + i.getCost() + " " + i.getImg() + " " + i.getDescription());
-				}
-				System.out.println("End of Cards");
+				ArrayList<PurchaseHistoryBean> purchases = purchaseModel.getPurchasesByMonth(3, 2019);
 				
 				request.setAttribute("topTenCards", cards);
+				request.setAttribute("monthPurchases", purchases);
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

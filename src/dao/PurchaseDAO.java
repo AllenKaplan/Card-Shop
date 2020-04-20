@@ -51,8 +51,6 @@ public class PurchaseDAO {
 			purchases.add(new PurchaseHistoryBean(number,name,price,quantity,null)); //null image
 		}
 		return purchases;		
-	}
-	
-	
+	}	
 
 }
