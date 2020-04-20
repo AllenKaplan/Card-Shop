@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -30,6 +31,8 @@ public class Analytics extends HttpServlet {
 
 	private CardModel cardModel;
 	private PurchaseModel purchaseModel;
+	
+	private static final String CARDS_SOLD = "cardsSold";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -68,9 +71,11 @@ public class Analytics extends HttpServlet {
 			String target = "/analytics.jspx";
 			
 			try {
-				List<ProductBean> cards = cardModel.retrieveCards();
+				HashMap<Integer, Integer> cards = (HashMap<Integer, Integer>) request.getServletContext().getAttribute(CARDS_SOLD);
 				List<UserPurchasesBean> users = purchaseModel.getPurchasesByUser();
 				List<PurchaseHistoryBean> purchases;
+				
+				for(Integer i: cards.keySet()) System.out.println(i + ": " + cards.get(i));
 				
 				String year = request.getParameter("year");
 				String month = request.getParameter("month");
