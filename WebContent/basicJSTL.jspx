@@ -12,7 +12,7 @@
 		</head>
 		<body>
 			<h1>
-				It might be wednesday, my dudes
+				<a href="/home">Home</a>
 			</h1>
 		</body>
 	</html>

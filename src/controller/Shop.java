@@ -21,7 +21,7 @@ import model.ReviewModel;
 /**
  * Servlet implementation class CardShop
  */
-@WebServlet({"/home", "/home/*", "/"})
+@WebServlet({"/home", "/home/*"})
 public class Shop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

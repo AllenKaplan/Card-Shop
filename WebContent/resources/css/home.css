@@ -71,6 +71,10 @@ body, header{
   margin: 0 10em 0 10em;
 }
 
+img {
+	width: 200px;
+}
+
 /* @media screen and (max-width: 768px) { */
 /*   table { */
 /*     display: block; */
