@@ -141,53 +141,27 @@
 
 			</table>
 		</div>
-
-		<h2>Test area</h2>
+		
+		<h2>Anonymized Customer Report</h2>
 
 		<div class="row mb-4">
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">Preview</th>
-						<th scope="col">Card Number</th>
-						<th scope="col">Card Name</th>
-						<th scope="col">Card Type</th>
-						<!-- <th scope="col">Quantity</th> -->
-						<th scope="col">Price</th>
+						<th scope="col">Zip Code</th>
+						<th scope="col">Total Spent</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="i" items="${requestScope.topTenCards}">
+					<c:forEach var="i" items="${ users }">
 						<tr>
-							<td><img src="${i.getImg()}" /></td>
-							<td>${i.getLimit()}</td>
-							<td>${i.getName()}</td>
-							<td>${i.getCost()}</td>
+							<td>${ i.getZipcode() }</td>
+							<td><f:formatNumber value="${ i.getTotalSpent() }" type="currency" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
-				<!-- 
-                    <tr>
-                        <td><img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452"/></td>
-                        <td>000</td>
-                        <td>Rulers Blessing</td>
-                        <td>Specified Slot</td>
-                        <td>1</td>
-                        <td class="price">$20.00</td>
-                    </tr>
-                    <tr>
-                        <td><img class="image" src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452"/></td>
-                        <td>000</td>
-                        <td>Rulers Blessing</td>
-                        <td>Specified Slot</td>
-                        <td>4</td>
-                        <td class="price">$11.00</td>
-                    </tr>
-                </tbody>
-                 -->
 			</table>
 		</div>
-
 
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
