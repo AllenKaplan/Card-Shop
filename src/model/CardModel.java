@@ -25,9 +25,9 @@ public class CardModel {
 		return card.retrieveAll();
 	}
 
-	public ProductBean retrieveCard(String name) {
+	/*public ProductBean retrieveCard(String name) {
 		return card.retrieve();
-	}
+	}*/
 	
 	public ProductBean retrieveCardByID(int id) throws SQLException {
 		return card.retrieveByID(id);

@@ -26,36 +26,33 @@ public class CardDAO {
 		}
 	}
 
-	public ProductBean retrieve() {
-		/*
-		select * from cards where id=id_number
-		*/
-		ProductBean testItem = new CardBean(0, "testName", "testDesc", 420.69, 10, null);
-		
-		return testItem;
-	}
-	
 	public ProductBean retrieveByID(int id) throws SQLException {
 		/*
 		select * from cards where id=id_number
 		*/
 		
-		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.number  = " + id;      
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number join CardImages on cards.number = cardImages.cardNumber where cards.number = ?";      
 		Connection con = this.dataSource.getConnection();   
 		PreparedStatement p = con.prepareStatement(query);   
+		p.setInt(1, id);
 		
 		ResultSet r = p.executeQuery();   
 		if (r.next()) {
 			String name = r.getString("name");
 			String desc = r.getString("description");
-			Double price = Double.parseDouble(r.getString("sellingPrice"));
-			Integer rating = Integer.parseInt(r.getString("Limit"));
+			String rank = r.getString("rank");
+			Integer limit = r.getInt("limit");
+			String classType = r.getString("class");
+			String spellType = r.getString("spellType");
+			String img = r.getString("image");
+			int stock = r.getInt("stock");
+			double price = r.getDouble("sellingprice");
 
 			r.close();   
 			p.close();   
 			con.close();   
 			
-			return new CardBean(id, name, desc, price, rating, null);
+			return new CardBean(id,name,desc,rank,limit,classType,spellType,img,stock,price);
 		} else {
 			r.close();   
 			p.close();   
@@ -74,18 +71,24 @@ public class CardDAO {
 		
 		List<ProductBean> products = new ArrayList<>();
 		
-		String query = "select * from cards join cardmarket on cards.number = cardmarket.number where cards.name like '%" + searchQuery + "%'";      
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number join CardImages on cards.number = CardImages.cardNumber where cards.name like '%?%'";      
 		Connection con = this.dataSource.getConnection();   
 		PreparedStatement p = con.prepareStatement(query);   
+		p.setString(1, searchQuery);
 		ResultSet r = p.executeQuery();   
 		while (r.next())
 		{    
 			int id = r.getInt("number");
 			String name = r.getString("name");
 			String desc = r.getString("description");
-			Double price = Double.parseDouble(r.getString("sellingPrice"));
-			Integer rating = Integer.parseInt(r.getString("Limit"));	
-			products.add(new CardBean(id, name, desc, price, rating, null));
+			String rank = r.getString("rank");
+			Integer limit = r.getInt("limit");
+			String classType = r.getString("class");
+			String spellType = r.getString("spellType");
+			String img = r.getString("image");
+			int stock = r.getInt("stock");
+			double price = r.getDouble("sellingprice");				
+			products.add(new CardBean(id,name,desc,rank,limit,classType,spellType,img,stock,price));
 		}   
 		r.close();   
 		p.close();   
@@ -96,7 +99,7 @@ public class CardDAO {
 	public List<ProductBean> retrieveAll() throws SQLException{
 		List<ProductBean> products = new ArrayList<>();
 		
-		String query = "select * from cards join cardmarket on cards.number = cardmarket.number";      
+		String query = "select * from cards join cardmarket on cards.number = cardmarket.number join CardImages on cards.number = CardImages.cardNumber";      
 		Connection con = this.dataSource.getConnection();   
 		PreparedStatement p = con.prepareStatement(query);   
 		ResultSet r = p.executeQuery();   
@@ -105,9 +108,14 @@ public class CardDAO {
 			int id = r.getInt("number");
 			String name = r.getString("name");
 			String desc = r.getString("description");
-			Double price = Double.parseDouble(r.getString("sellingPrice"));
-			Integer rating = Integer.parseInt(r.getString("Limit"));				
-			products.add(new CardBean(id, name, desc, price, rating, null));
+			String rank = r.getString("rank");
+			Integer limit = r.getInt("limit");
+			String classType = r.getString("class");
+			String spellType = r.getString("spellType");
+			String img = r.getString("image");
+			int stock = r.getInt("stock");
+			double price = r.getDouble("sellingprice");				
+			products.add(new CardBean(id,name,desc,rank,limit,classType,spellType,img,stock,price));
 		}   
 		r.close();   
 		p.close();   
