@@ -26,6 +26,8 @@ public class Analytics extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CardModel cardModel = new CardModel();
 	private PurchaseModel purchaseModel = new PurchaseModel();
+	
+	private String[] MonthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,7 +44,34 @@ public class Analytics extends HttpServlet {
 			
 			try {
 				List<ProductBean> cards = cardModel.retrieveCards();
-				ArrayList<PurchaseHistoryBean> purchases = purchaseModel.getPurchasesByMonth(3, 2019);
+				ArrayList<PurchaseHistoryBean> purchases;
+				
+				String year = request.getParameter("year");
+				String month = request.getParameter("month");
+				
+				if(month == null && year == null) {
+					purchases = purchaseModel.getPurchasesByMonth(3, 2019);
+					request.setAttribute("month", "March");
+				}
+				
+				else if(year == null) {
+					int monthNumber = Integer.parseInt(month);
+					
+					purchases = purchaseModel.getPurchasesByMonth(monthNumber, 2020);
+					request.setAttribute("month", MonthArray[monthNumber]);
+				}
+				
+				else if(month == null) {
+					purchases = purchaseModel.getPurchasesByMonth(1, Integer.parseInt(year));
+					request.setAttribute("month", "January");
+				}
+				
+				else {
+					int monthNumber = Integer.parseInt(month);
+					
+					purchases = purchaseModel.getPurchasesByMonth(Integer.parseInt(month), Integer.parseInt(year));
+					request.setAttribute("month", MonthArray[monthNumber]);
+				}
 				
 				request.setAttribute("topTenCards", cards);
 				request.setAttribute("monthPurchases", purchases);

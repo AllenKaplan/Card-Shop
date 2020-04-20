@@ -72,36 +72,38 @@
 			</table>
 		</div>
 		
-		<div class="row p-4">
-			<h3 class="p-3">Month Select</h3>
-			<div class="form-group col-md-4">
-				<label for="select1">Month:</label> <select class="form-control"
-					id="select1">
-					<option value="january">January</option>
-					<option value="february">February</option>
-					<option value="march">March</option>
-					<option value="april">April</option>
-					<option value="may">May</option>
-					<option value="june">June</option>
-					<option value="july">July</option>
-					<option value="august">August</option>
-					<option value="september">September</option>
-					<option value="october">October</option>
-					<option value="november">November</option>
-					<option value="december">December</option>
-				</select>
+		<form method="POST" target="/analytics">
+			<div class="row p-4">
+				<h3 class="p-3">Month Select</h3>
+				<div class="form-group col-md-4">
+					<label for="select1">Month:</label> <select class="form-control"
+						id="select1">
+						<option value="january">January</option>
+						<option value="february">February</option>
+						<option value="march">March</option>
+						<option value="april">April</option>
+						<option value="may">May</option>
+						<option value="june">June</option>
+						<option value="july">July</option>
+						<option value="august">August</option>
+						<option value="september">September</option>
+						<option value="october">October</option>
+						<option value="november">November</option>
+						<option value="december">December</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="select2">Year:</label> <select class="form-control"
+						id="select2">
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+					</select>
+				</div>
+				<input type="submit" value="Submit"/>
 			</div>
-			<div class="form-group col-md-4">
-				<label for="select2">Year:</label> <select class="form-control"
-					id="select2">
-					<option value="2019">2019</option>
-					<option value="2020">2020</option>
-					<option value="2021">2021</option>
-				</select>
-			</div>
-
-		</div>
-
+		</form>
+		
 		<h2>Top 10 Sold Cards</h2>
 
 		<div class="row mb-4">
