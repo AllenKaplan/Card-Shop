@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,18 +24,29 @@ import model.CardModel;
 @WebServlet({"/home", "/home/*"})
 public class Shop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private CardModel cardModel;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Shop() {
         super();
+        try {
+			cardModel = CardModel.getInstance();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext context = this.getServletContext();
+		String redirectPath = context.getInitParameter("redirectPath");
+		request.setAttribute("redirectPath", redirectPath);
+		
 		Map<String, String[]> params = request.getParameterMap();
 
 		@SuppressWarnings("unchecked")
@@ -48,7 +60,7 @@ public class Shop extends HttpServlet {
 			response.getWriter().append("This is your shopping cart\n");
 			response.getWriter().append(cart.toString());
 
-			request.setAttribute("products", cart);
+			request.getSession().setAttribute("cart", cart);
 
 			String target = "/cart.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
@@ -63,7 +75,7 @@ public class Shop extends HttpServlet {
 			
 			ProductBean cardToAdd;
 			try {
-				cardToAdd = CardModel.getInstance().retrieveCardByID(id);
+				cardToAdd = cardModel.retrieveCardByID(id);
 
 				if (cart.containsKey(cardToAdd)) {
 					int currentQnty = cart.get(cardToAdd);
@@ -74,56 +86,56 @@ public class Shop extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			
 			System.out.println("This is the shopping cart");
 			System.out.println(cart);
 					
-
-			request.setAttribute("products", cart);
+			request.getSession().setAttribute("cart", cart);
 			
-			String target = "/cart.jspx";
-			request.getRequestDispatcher(target).forward(request, response);
+			getCards(request);
+			String target = "/home.jspx";
+			request.getRequestDispatcher(target).forward(request, response);	
 		} else if(params.containsKey("search") && request.getParameter("search") != null) {
 			System.out.println("GET | HOME -> SEARCH");
 			List<ProductBean> products;
 			
 			try {
-				products = CardModel.getInstance().search(request.getParameter("query"));
+				products = cardModel.search(request.getParameter("query"));
 				request.setAttribute("products", products);
 				for (ProductBean b:products)
 					System.out.println(b.getName() + " Price: " + b.getCost());
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-						
+			
 			String target = "/home.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		
-		}else {
+		} else if (params.containsKey("checkout") && request.getParameter("checkout") != null) {
+			response.sendRedirect(redirectPath + "payment");
+		} else if (params.containsKey("toCart") && request.getParameter("toCart") != null) {
+			String target = "/cart.jspx";
+			request.getRequestDispatcher(target).forward(request, response);
+		} else {
 			System.out.println("GET | HOME PAGE");
-			List<ProductBean> products;
-			
-			try {
-				products = CardModel.getInstance().retrieveCards();
-				request.setAttribute("products", products);
-				for (ProductBean b:products)
-					System.out.println(b.getName() + " Price: " + b.getCost());
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			getCards(request);
 						
 			String target = "/home.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
+		}
+	}
+
+	private void getCards(HttpServletRequest request) {
+		List<ProductBean> products;
+		
+		try {
+			products = cardModel.retrieveCards();
+			request.setAttribute("products", products);
+			for (ProductBean b:products)
+				System.out.println(b.getName() + " Price: " + b.getCost());
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

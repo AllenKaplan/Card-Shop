@@ -116,7 +116,9 @@ public class Payment extends HttpServlet {
 							product.getCost(), quantity, loggedInUser.getAddressId(), formattedDate);
 					try {
 						purchase.makePurchase(order);
+						System.out.println("Purchase success: " + product.getName());
 					} catch (Exception e) {
+						System.out.println("Purchase failed:  " + product.getName());
 						e.printStackTrace();
 					}
 				}

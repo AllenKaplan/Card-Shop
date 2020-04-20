@@ -30,9 +30,11 @@
 		</head>
 		<body>
 			<div class="header">
-				<h2><a href="/home" class="title">CARD SHOP</a></h2>
+				<h2><a href="${ redirectPath }home" class="title">CARD SHOP</a></h2>
 				<div class="search">
+					
 					<form action="home" method="post">
+						<button type="submit" name="toCart"> Go to cart </button>
 						<input type="text" name="query"></input>
     					<input type="submit" name="search" value="Search" />
 					</form>
