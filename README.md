@@ -1,7 +1,7 @@
 # Card-Shop
 
 ## Shop
-
+Github link: https://github.com/AllenKaplan/Card-Shop
 The deployed application can be found here: https://eecs4413-cardshop.mybluemix.net/home 
 
 ## Overview
