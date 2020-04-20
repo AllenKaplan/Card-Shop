@@ -9,10 +9,10 @@ import model.PurchaseModel;;
 
 @Path("order") //this is the path of the resource
 public class Order {
+	
 	@GET
-    @Path("/info/")
-    @Produces("text/plain")
-    public String getOrdersByProductId(@QueryParam("productId") int id) throws Exception {
+    @Produces("text/json")
+    public String getOrdersByProductId(@QueryParam("productID") int id) throws Exception {
     	
 		try {
 			return PurchaseModel.getInstance().getPurchasesByProductId(id);
