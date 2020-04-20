@@ -20,6 +20,24 @@ Note that sometimes the Web.xml file can cause exceptions to be thrown when run 
 
 ## Deploying to Cloud
 
+THE CLOUD APPLICATION CAN BE FOUND HERE: https://eecs4413-cardshop.mybluemix.net/home 
+
+In order to deploy this java application onto the IBM cloud foundry, ensure you have the following resources: 
+
+Eclipse Java EE Edition (Recommended) or your preferred IDE
+Cloud Foundry Software installed on your IDE
+A valid IBM cloud foundry account
+
+Firstly, set up the IBM cloud foundry server in your IDE so that Cloud Foundry appears as an option when you are trying to run an application.
+
+Secondly, navigate to the class /Card-Shop/src/dao/DatabaseAccess.java and ensure that on the last line of this class, the constructor argument for the instance is set to DEPLOYMENT_ACCESS and not DEVELOPMENT_ACCESS. This will let your cloud application connect to the database. 
+
+Thirdly, navigate to the /Card-Shop/WebContent/WEB-INF/web.xml file and change the "redirectPath" context-parameter value to "/" (no quotations).  
+
+Lastly, navigate to the following class, /Card-Shop/src/controller/Shop.java. Right click -> run as -> Cloud Foundry to deploy this application on the IBM foundry.
+
+The card shop will now be deployed on cloud! :)
+
 ## File Structure
 ![image](https://user-images.githubusercontent.com/35306396/79798985-c6c53e80-8327-11ea-8148-b5923fd9cb7a.png)
 
