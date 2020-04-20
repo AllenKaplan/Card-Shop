@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.CardBean;
 import bean.ProductBean;
+import bean.ReviewBean;
 import model.CardModel;
+import model.ReviewModel;
 
 /**
  * Servlet implementation class CardShop
@@ -24,19 +26,11 @@ import model.CardModel;
 @WebServlet({"/home", "/home/*"})
 public class Shop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CardModel cardModel;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Shop() {
-        super();
-        try {
-			cardModel = CardModel.getInstance();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
 	/**
@@ -67,12 +61,39 @@ public class Shop extends HttpServlet {
 		} else if(params.containsKey("review")) {
 				System.out.println("GET | HOME -> REVIEW");
 				String target = "/review.jspx";
+				int cardID = Integer.parseInt(request.getParameter("review"));
+				request.setAttribute("cardID", cardID);
+				try {
+					request.setAttribute("reviews", ReviewModel.getInstance().getReview(cardID));
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				System.out.println(request.getParameter("review"));
 				request.getRequestDispatcher(target).forward(request, response);
 		}else if(params.containsKey("submitReview") && request.getParameter("submitReview") != null) {
 					System.out.println("GET | REVIEW -> SUBMIT");
-					response.getWriter().append("Review added:\n");
-					response.getWriter().append(request.getParameter("reviewRating\n"));
-					response.getWriter().append(request.getParameter("reviewContent"));
+
+					int cardID = Integer.parseInt(request.getParameter("cardID"));
+//					int cardID = 71;
+					int rating = Integer.parseInt(request.getParameter("reviewRating"));
+					String content = request.getParameter("reviewContent");
+					
+					try {
+						ReviewModel.getInstance().addReview(new ReviewBean(cardID, rating, content));
+					} catch (ClassNotFoundException | SQLException e) {
+						e.printStackTrace();
+					}
+					
+//					response.getWriter().append("Review added:\n");
+//					response.getWriter().append("Card No. "+cardID+"\n");
+//					response.getWriter().append("Rating: "+rating+"\n");
+//					response.getWriter().append("Review:\n"+content);
+
+					getCards(request);
+					String target = "/home.jspx";
+					request.getRequestDispatcher(target).forward(request, response);	
 		} else if(params.containsKey("addToCart") && request.getParameter("addToCart") != null) {
 			System.out.println("GET | HOME -> ADD TO CART");
 			
@@ -80,7 +101,7 @@ public class Shop extends HttpServlet {
 			
 			ProductBean cardToAdd;
 			try {
-				cardToAdd = cardModel.retrieveCardByID(id);
+				cardToAdd = CardModel.getInstance().retrieveCardByID(id);
 				
 				boolean cardExists = cart.keySet().stream().filter(k -> k.getName().equals(cardToAdd.getName())).count() == 1;
 					
@@ -96,6 +117,8 @@ public class Shop extends HttpServlet {
 				}
 				
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -113,11 +136,13 @@ public class Shop extends HttpServlet {
 			List<ProductBean> products;
 			
 			try {
-				products = cardModel.search(request.getParameter("query"));
+				products = CardModel.getInstance().search(request.getParameter("query"));
 				request.setAttribute("products", products);
 //				for (ProductBean b:products)
 //					System.out.println(b.getName() + " Price: " + b.getCost());
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 			
@@ -142,11 +167,13 @@ public class Shop extends HttpServlet {
 		List<ProductBean> products;
 		
 		try {
-			products = cardModel.retrieveCards();
+			products = CardModel.getInstance().retrieveCards();
 			request.setAttribute("products", products);
 //			for (ProductBean b:products)
 //				System.out.println(b.getName() + " Price: " + b.getCost());
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

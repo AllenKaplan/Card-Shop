@@ -34,24 +34,54 @@
 				<div class="search">
 					
 					<form action="home" method="post">
-						<button type="submit" name="toCart" > Go to Cart</button> - ${cart.size()} Unique Card(s)!
+						<button type="submit" name="toCart" > Go to Cart</button><c:if test="${cart.size() > 0}"> - ${cart.size()} Unique Card(s)!</c:if>
 						<input type="text" name="query" style='margin: 0em 1em 0em 2em'></input>
     					<input type="submit" name="search" value="Search" />
 					</form>
 				</div>
 				
 			</div>
-			<div class="body">
+			<div>
 				
 									<form action="home" method="post" id="review_form"></form>
 									
 									<form action="home" method="post" id="cart_form"></form>
+				
+				
+									
 				<div class="content">
-						<form action="home" method="post">
+				
+				<form action="home" method="post">
+				<FIELDSET>
+				<legend>Review</legend>
+						<label for="cardID">Card No</label>
+						<input type="number" name="cardID" value="${cardID}"></input>
+						<label for="reviewRating">Rating</label>
 						<input type="number" name="reviewRating" min="0" max="10" ></input>
+						<label for="reviewContent">Review</label>
 						<input type="text" name="reviewContent"></input>
 						<button type="submit" name="submitReview" >  Submit Review </button>
-						</form>
+						</FIELDSET>
+				</form>
+				</div>
+				
+				<div class="content">
+				<h3>Past Reviews</h3>
+				<table class="table">
+					<thead>
+						<th width="10%" style='text-align:center'>Rating</th>
+						<th width="90%">Review</th>
+					</thead>
+					<tbody>
+					<c:forEach items="${reviews}" var="review">
+					<tr>
+						<td style='text-align:center'>${review.rating}</td>
+						<td>${review.content}</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+				</table>
+				
 				</div>
 			</div>
 		</body>
