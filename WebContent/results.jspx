@@ -24,6 +24,14 @@
 			<h2 style="text-align:center; margin-top: 30px">
 				${message}
 			</h2 >
+			<c:if test="${ failed != null }">
+				<form action="${ redirectPath }payment" style="text-align:center;">
+					<button type="submit">Back to Payment Page</button>
+				</form>
+			</c:if>
+			<form action="${ redirectPath }home" style="text-align:center; margin-top: 10px">
+				<button type="submit">Back to Home Page</button>
+			</form>
 		</body>
 	</html>
 </root>

@@ -36,7 +36,8 @@ public class UserDAO {
 
 		PreparedStatement login = con.prepareStatement(queryAccount);   
 		login.setString(1, username);	
-		login.setString(2, password);		
+		login.setString(2, password);	
+		
 		ResultSet userResult = login.executeQuery();  
 
 		if (userResult.next()) //if an account exists
@@ -149,12 +150,13 @@ public class UserDAO {
 	 */
 	public void updateUser(UserBean updatedUser) throws Exception {
 		UserBean user = null;
-		String queryAccount = "select address from account where username = ?";
+		String queryAccount = "select address from accounts where username = ?";
 
 		Connection con = this.dataSource.getConnection();   
 
 		PreparedStatement getAddress = con.prepareStatement(queryAccount);   
 		getAddress.setString(1, updatedUser.getUsername());	
+		System.out.println("************\n" + updatedUser.getUsername() + "\n**********************");
 		ResultSet addressResult = getAddress.executeQuery();  
 
 		int address;
@@ -168,7 +170,7 @@ public class UserDAO {
 		addressResult.close();   
 		getAddress.close();   
 
-		String updateAccount = "update account set fname = ?, lname = ? where username = ?";
+		String updateAccount = "update accounts set fname = ?, lname = ? where username = ?";
 		PreparedStatement updateName = con.prepareStatement(updateAccount);   
 		updateName.setString(1, updatedUser.getFirstName());
 		updateName.setString(2, updatedUser.getLastName());
@@ -176,7 +178,7 @@ public class UserDAO {
 		updateName.executeUpdate(); 
 		updateName.close();
 
-		String updateAddress = "update address set street = ?, province = ?, city = ?, zip = ? where addressId = ?";
+		String updateAddress = "update addresses set street = ?, province = ?, city = ?, zip = ? where addressId = ?";
 		PreparedStatement updateAddressInfo = con.prepareStatement(updateAddress);
 		updateAddressInfo.setString(1, updatedUser.getAddress());
 		updateAddressInfo.setString(2, updatedUser.getProvince());
