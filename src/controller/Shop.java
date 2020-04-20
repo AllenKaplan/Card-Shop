@@ -65,9 +65,14 @@ public class Shop extends HttpServlet {
 			String target = "/cart.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("review")) {
-			System.out.println("GET | HOME -> REVIEW");
-			response.getWriter().append("Review added:\n");
-			response.getWriter().append(request.getParameter("review"));
+				System.out.println("GET | HOME -> REVIEW");
+				String target = "/review.jspx";
+				request.getRequestDispatcher(target).forward(request, response);
+		}else if(params.containsKey("submitReview") && request.getParameter("submitReview") != null) {
+					System.out.println("GET | REVIEW -> SUBMIT");
+					response.getWriter().append("Review added:\n");
+					response.getWriter().append(request.getParameter("reviewRating\n"));
+					response.getWriter().append(request.getParameter("reviewContent"));
 		} else if(params.containsKey("addToCart") && request.getParameter("addToCart") != null) {
 			System.out.println("GET | HOME -> ADD TO CART");
 			
