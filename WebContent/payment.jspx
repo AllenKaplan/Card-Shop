@@ -21,6 +21,9 @@
 					<button>Go</button>
 				</div>
 			</div>
+			<c:if test="${ error != null }">
+				${ error }
+			</c:if>
 			<div class="payment-body">
 				<form action="payment" method="POST" onsubmit="return login();">
 					<fieldset>

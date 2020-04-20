@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -89,6 +90,28 @@ public class Payment extends HttpServlet {
 			return;
 		} else if (payment) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
+			// Check credit card info
+			boolean codeIsNumber = false;
+			try {
+				int code = Integer.parseInt(securityCode);
+				codeIsNumber = true;
+			} catch (Exception e) {}
+			
+			if (cardNumber == null || cardNumber.length() != 19) {
+				System.out.println("Len: " + cardNumber.length());
+				request.setAttribute("error", "Credit card must be in the form 'XXXX XXXX XXXX XXXX'.");
+				setAttributes(request, loggedInUser);
+				String target = "/payment.jspx";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			} else if (securityCode == null || securityCode.length() != 3 || !codeIsNumber) {
+				request.setAttribute("error", "Security code must be a 3 digit number");
+				setAttributes(request, loggedInUser);
+				String target = "/payment.jspx";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			}
+			
 			
 			// fail every third request
 			if (succeededRequests >= 2) {
@@ -138,17 +161,21 @@ public class Payment extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 			return;
 		} else {
-			// get default payment info
-			request.setAttribute("firstName", loggedInUser.getFirstName());
-			request.setAttribute("lastName", loggedInUser.getLastName());
-			request.setAttribute("address", loggedInUser.getAddress());
-			request.setAttribute("city", loggedInUser.getCity());
-			request.setAttribute("province", loggedInUser.getProvince());
-			request.setAttribute("postal", loggedInUser.getPostal());
+			setAttributes(request, loggedInUser);
 		}
 		
 		String target = "/payment.jspx";
 		request.getRequestDispatcher(target).forward(request, response);
+	}
+
+	private void setAttributes(HttpServletRequest request, UserBean loggedInUser) {
+		// get default payment info
+		request.setAttribute("firstName", loggedInUser.getFirstName());
+		request.setAttribute("lastName", loggedInUser.getLastName());
+		request.setAttribute("address", loggedInUser.getAddress());
+		request.setAttribute("city", loggedInUser.getCity());
+		request.setAttribute("province", loggedInUser.getProvince());
+		request.setAttribute("postal", loggedInUser.getPostal());
 	}
 
 	/**
