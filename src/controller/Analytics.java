@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.CardBean;
 import bean.ProductBean;
 import bean.PurchaseHistoryBean;
+import bean.UserPurchasesBean;
 import model.CardModel;
 import model.PurchaseModel;
 
@@ -68,7 +69,8 @@ public class Analytics extends HttpServlet {
 			
 			try {
 				List<ProductBean> cards = cardModel.retrieveCards();
-				ArrayList<PurchaseHistoryBean> purchases;
+				List<UserPurchasesBean> users = purchaseModel.getPurchasesByUser();
+				List<PurchaseHistoryBean> purchases;
 				
 				String year = request.getParameter("year");
 				String month = request.getParameter("month");
@@ -102,6 +104,7 @@ public class Analytics extends HttpServlet {
 				
 				request.setAttribute("topTenCards", cards);
 				request.setAttribute("monthPurchases", purchases);
+				request.setAttribute("users", users);
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import bean.PurchaseHistoryBean;
+import bean.UserPurchasesBean;
 import bean.OrderBean;
 import dao.PurchaseDAO;
 
@@ -32,5 +33,9 @@ public class PurchaseModel {
 	public void makePurchase(OrderBean order) throws Exception {
     	purchase.createOrder(order);
     }
+	
+	public ArrayList<UserPurchasesBean> getPurchasesByUser() throws SQLException {
+		return purchase.purchasesByUser();
+	}
 
 }
