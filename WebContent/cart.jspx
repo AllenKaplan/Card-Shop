@@ -34,9 +34,9 @@
 					<th scope="col">Preview</th>
 					<th scope="col">Card Number</th>
 					<th scope="col">Card Name</th>
-					<th scope="col">Card Type</th>
 					<th scope="col">Quantity</th>
-					<th scope="col">Price</th>
+					<th scope="col">Price (Each)</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,40 +46,11 @@
 						<td><img src="${ item.key.getImg() }"/></td>
 						<td>${ item.key.getId() }</td>
 						<td>${ item.key.getName() }</td>
-						<td>wow</td>
-						<td>${ item.value }</td>
+						<td><input type="number" id="quantity" name="quantity" value="${ item.value }" /></td>
 						<td>${ item.key.getCost() }</td>
 					</tr>
 				</c:forEach>
 				
-				<!-- 
-				<tr>
-					<td><img class="image"
-						src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
-					<td>000</td>
-					<td>Rulers Blessing</td>
-					<td>Specified Slot</td>
-					<td><input type="number" value="1"/></td>
-					<td class="price">$20.00</td>
-				</tr>
-				<tr>
-					<td><img class="image"
-						src="https://vignette.wikia.nocookie.net/hunterxhunter/images/5/54/Ruler%27s_Blessing_%28G.I_card%29_%3Dscan%3D.png/revision/latest/scale-to-width-down/48?cb=20131202170452" /></td>
-					<td>000</td>
-					<td>Rulers Blessing</td>
-					<td>Specified Slot</td>
-					<td><input type="number" value="1"/></td>
-					<td class="price">$11.00</td>
-				</tr>
-				<tr id="total">
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>Total:</td>
-					<td class="price">$11.00</td>
-				</tr>
-				-->
 				<tr id="total">
 					<td></td>
 					<td></td>
