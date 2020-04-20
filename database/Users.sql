@@ -1,6 +1,6 @@
 CREATE TABLE Logins (
     username VARCHAR(20) not null,
-    password VARCHAR(20) not null,
+    password VARCHAR(40) not null,
     PRIMARY KEY (username)
 );
 

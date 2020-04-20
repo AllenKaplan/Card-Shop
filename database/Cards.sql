@@ -29,3 +29,11 @@ CREATE TABLE CardImages(
     image varchar(500),
     FOREIGN KEY (cardNumber) REFERENCES Cards(number)
 );
+
+CREATE TABLE CardReview(
+    number INT not null, 
+    rating int not null,
+    content VARCHAR(500),
+    FOREIGN KEY (number) REFERENCES Cards(number),
+    CONSTRAINT valid CHECK (rating>=0 AND rating<=10)
+);

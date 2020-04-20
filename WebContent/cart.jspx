@@ -43,11 +43,11 @@
 				
 				<c:forEach var="item" items="${sessionScope.cart}">
 					<tr>
-						<td><img src="${ item.key.getImg() }"/></td>
+						<td><img src="${ item.key.getImg() }" width="200px"/></td>
 						<td>${ item.key.getId() }</td>
 						<td>${ item.key.getName() }</td>
-						<td><input type="number" id="quantity" name="quantity" value="${ item.value }" /></td>
-						<td>${ item.key.getCost() }</td>
+						<td><input type="number" id="quantity" name="quantity" min="0" value="${ item.value }" /></td>
+						<td><f:formatNumber value="${ item.key.getCost() }" type="currency" /></td>
 					</tr>
 				</c:forEach>
 				

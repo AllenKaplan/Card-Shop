@@ -34,7 +34,7 @@
 				<div class="search">
 					
 					<form action="home" method="post">
-						<button type="submit" name="toCart" > Go to Cart</button> - ${cart.size()} Unique Card(s)!
+						<button type="submit" name="toCart" > Go to Cart</button><c:if test="${cart.size() > 0}"> - ${cart.size()} Unique Card(s)!</c:if>
 						<input type="text" name="query" style='margin: 0em 1em 0em 2em'></input>
     					<input type="submit" name="search" value="Search" />
 					</form>
@@ -44,8 +44,9 @@
 			<div class="body">
 				
 									<form action="home" method="post" id="review_form"></form>
-									
 									<form action="home" method="post" id="cart_form"></form>
+         							<f:setLocale value = "en_CA"/>
+         							
 				<div class="content">
 				<table class="table">
 					<thead>
@@ -68,7 +69,9 @@
 								<td>${product.name}</td> 
 								<td>${product.description}</td>
 								<td style='text-align:center'>${product.limit}</td>
-								<td style='text-align:center'>$ ${product.cost}</td>
+								
+         
+								<td style='text-align:center'><f:formatNumber value = "${product.cost}" type = "currency"/></td>
 								<td style='text-align:center'>
     								<button type="submit" name="review" value="${product.id}" form="review_form">Review</button>
 								</td>
