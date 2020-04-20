@@ -94,11 +94,14 @@ public class Payment extends HttpServlet {
 			if (succeededRequests >= 2) {
 				// failed
 				succeededRequests = 0;
+				request.setAttribute("failed", "true");
 				request.setAttribute("message", "Credit Card Authorization Failed");
 			} else {
 				// passed
+				succeededRequests++;
 				// update address data
 				try {
+					System.out.println("First name: " + firstName);
 					userModel.updateAddress(loggedInUser.getUsername(), firstName, lastName, address, city, province, postal);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -126,9 +129,11 @@ public class Payment extends HttpServlet {
 				// Clear cart
 				cart.clear();
 				request.getSession().setAttribute("cart", cart);
-				
 				request.setAttribute("message", "Order Successfully Completed");
 			}
+			
+			request.setAttribute("redirectPath", redirectPath);
+			
 			String target = "/results.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 			return;

@@ -65,9 +65,14 @@ public class Shop extends HttpServlet {
 			String target = "/cart.jspx";
 			request.getRequestDispatcher(target).forward(request, response);
 		} else if(params.containsKey("review")) {
-			System.out.println("GET | HOME -> REVIEW");
-			response.getWriter().append("Review added:\n");
-			response.getWriter().append(request.getParameter("review"));
+				System.out.println("GET | HOME -> REVIEW");
+				String target = "/review.jspx";
+				request.getRequestDispatcher(target).forward(request, response);
+		}else if(params.containsKey("submitReview") && request.getParameter("submitReview") != null) {
+					System.out.println("GET | REVIEW -> SUBMIT");
+					response.getWriter().append("Review added:\n");
+					response.getWriter().append(request.getParameter("reviewRating\n"));
+					response.getWriter().append(request.getParameter("reviewContent"));
 		} else if(params.containsKey("addToCart") && request.getParameter("addToCart") != null) {
 			System.out.println("GET | HOME -> ADD TO CART");
 			
@@ -76,20 +81,27 @@ public class Shop extends HttpServlet {
 			ProductBean cardToAdd;
 			try {
 				cardToAdd = cardModel.retrieveCardByID(id);
-
-				if (cart.containsKey(cardToAdd)) {
-					int currentQnty = cart.get(cardToAdd);
-					cart.put(cardToAdd, currentQnty+1);
+				
+				boolean cardExists = cart.keySet().stream().filter(k -> k.getName().equals(cardToAdd.getName())).count() == 1;
+					
+				
+//				if (cart.containsKey(cardToAdd)) {
+				if (cardExists) {
+					ProductBean card = (ProductBean) cart.keySet().stream().filter(k -> k.getName().equals(cardToAdd.getName())).toArray()[0];
+					int currentQnty = cart.get(card);
+					cart.put(card, currentQnty+1);
 				} else {
 					cart.put(cardToAdd, 1);
+
 				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			System.out.println("This is the shopping cart");
-			System.out.println(cart);
+			cart.forEach((k,v) -> System.out.println(k.getName() + " - " + v));
 					
 			request.getSession().setAttribute("cart", cart);
 			

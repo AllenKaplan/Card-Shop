@@ -101,4 +101,28 @@ public class PurchaseDAO {
 		return users;
 	
 	}
+	
+	public ArrayList<PurchaseHistoryBean> getPurchasesByProductId(int id) throws SQLException
+	{
+		String ordersQuery = "select * from orders where itemNumber = ?";
+		
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement orders = con.prepareStatement(ordersQuery);   
+		orders.setInt(1, id);	
+		ResultSet ordersResult = orders.executeQuery();  	
+		
+		ArrayList<PurchaseHistoryBean> purchases = new ArrayList<PurchaseHistoryBean>();
+		while (ordersResult.next())
+		{
+			int number = ordersResult.getInt("itemNumber");
+			String name = ordersResult.getString("itemName");
+			double price = ordersResult.getInt("salePrice");
+			int quantity = ordersResult.getInt("quantity");
+			purchases.add(new PurchaseHistoryBean(number,name,price,quantity,null)); //null image
+		}
+		orders.close();
+		ordersResult.close();
+		con.close();
+		return purchases;
+	}
 }

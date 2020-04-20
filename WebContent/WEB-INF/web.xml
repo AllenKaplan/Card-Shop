@@ -6,7 +6,7 @@
   </context-param>
   <context-param>
     <param-name>redirectPath</param-name>
-    <param-value>/Card-Shop/</param-value>
+    <param-value>/EECS4413_Project/</param-value>
   </context-param>
   <error-page>
     <error-code>404</error-code>
@@ -23,4 +23,13 @@
     <servlet-name>Shop</servlet-name>
     <servlet-class>controller.Shop</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Jersey</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
 </web-app>
