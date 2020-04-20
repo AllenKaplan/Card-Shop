@@ -35,7 +35,7 @@ public class Login extends HttpServlet {
 		context = getServletContext();
 		// Instantiate Loan object
 		try {
-			UserModel userModel = new UserModel();
+			UserModel userModel = UserModel.getInstance();
 			context.setAttribute("userModel", userModel);
 		} catch (Exception e) {
 			// set error?
@@ -64,11 +64,14 @@ public class Login extends HttpServlet {
 		if (login) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
 			try {
-				UserBean loggedInUser= userModel.login(username, password);
+				UserBean loggedInUser = userModel.login(username, password);
 				if (loggedInUser != null) {
 					// On successful login, set accountType
 					request.getSession().setAttribute("loggedInUser", loggedInUser);
-					response.sendRedirect("/EECS4413_Project/home");
+					
+					ServletContext context = this.getServletContext();
+					String redirectPath = context.getInitParameter("redirectPath");
+					response.sendRedirect(redirectPath + "payment");
 					return;
 				} else {
 					// login failed

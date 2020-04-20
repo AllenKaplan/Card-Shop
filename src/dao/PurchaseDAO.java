@@ -80,9 +80,8 @@ public class PurchaseDAO {
 		orders.close();
 		ordersResult.close();
 		con.close();
-		return purchases;		
-	}	
-
+		return purchases;
+	}
 	
 	public ArrayList<UserPurchasesBean> purchasesByUser() throws SQLException{
 		String query = "select username, zip, sum(salePrice*quantity)totalSpent from orders join addresses on orders.deliveryAddress = addresses.addressID group by username, zip";
@@ -102,7 +101,4 @@ public class PurchaseDAO {
 		return users;
 	
 	}
-	
-	
-
 }

@@ -47,6 +47,7 @@ public class UserDAO {
 
 			Integer address = userResult.getInt("address");
 			String street = null;
+			int addressId = -1;
 			String city = null; 
 			String province = null; 
 			String postal = null;
@@ -59,11 +60,12 @@ public class UserDAO {
 			if (addResult.next())
 			{
 				street = addResult.getString("street");
+				addressId = addResult.getInt("addressID");
 				city = addResult.getString("city");
 				province = addResult.getString("province");
 				postal = addResult.getString("zip");
 			}
-			user = new UserBean(username, fname, lname, street, city, province, postal, accountType);
+			user = new UserBean(username, fname, lname, street, addressId, city, province, postal, accountType);
 			addResult.close();   
 			statmentAddress.close();   
 		}   

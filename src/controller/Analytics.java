@@ -24,16 +24,23 @@ import model.PurchaseModel;
 public class Analytics extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private CardModel cardModel = new CardModel();
-	private PurchaseModel purchaseModel = new PurchaseModel();
 	
 	private String[] MonthArray = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+	private CardModel cardModel;
+	private PurchaseModel purchaseModel;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Analytics() {
         super();
+        try {
+			purchaseModel = PurchaseModel.getInstance();
+			cardModel = CardModel.getInstance();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
     }
 
 	/**

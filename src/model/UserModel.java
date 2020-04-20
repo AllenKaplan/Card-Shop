@@ -1,14 +1,23 @@
 package model;
 
 import bean.UserBean;
+import dao.PurchaseDAO;
 import dao.UserDAO;
 
 public class UserModel {
 	private UserDAO userDAO;
 	
-	public UserModel() throws Exception {
-		userDAO = new UserDAO();
-	}
+    private static UserModel instance;
+	
+    public static UserModel getInstance() throws ClassNotFoundException{
+        if (instance == null) {
+            instance = new UserModel();
+            instance.userDAO = new UserDAO();
+        }
+        return instance;
+    }
+    
+    private UserModel() {}
 	
 	public UserBean login(String username, String password) throws Exception {
 		String[] inputs = { username, password };
@@ -24,7 +33,7 @@ public class UserModel {
 		if (password.length() < 6) {
 			throw new Exception("Password must be 6 or more characters");
 		}
-		UserBean newUser = new UserBean(username, firstName, lastName, address, city, province, postal, "CUSTOMER");
+		UserBean newUser = new UserBean(username, firstName, lastName, address, -1, city, province, postal, "CUSTOMER");
 		userDAO.register(username, password, newUser);
 	}
 	
@@ -33,7 +42,7 @@ public class UserModel {
 		// username is already verified and is not changing
 		String[] inputs = { firstName, lastName, address, city, province, postal };
 		this.verifyInputs(inputs);
-		UserBean updatedUser = new UserBean(username, firstName, lastName, address, city, province, postal, "CUSTOMER");
+		UserBean updatedUser = new UserBean(username, firstName, lastName, address, -1, city, province, postal, "CUSTOMER");
 		userDAO.updateUser(updatedUser);
 	}
 	

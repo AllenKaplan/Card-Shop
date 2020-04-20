@@ -4,6 +4,10 @@
     <param-name>name</param-name>
     <param-value>Allen</param-value>
   </context-param>
+  <context-param>
+    <param-name>redirectPath</param-name>
+    <param-value>/EECS4413_Project/</param-value>
+  </context-param>
   <error-page>
     <error-code>404</error-code>
     <location>/res/my404.jspx</location>
