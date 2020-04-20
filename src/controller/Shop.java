@@ -103,8 +103,8 @@ public class Shop extends HttpServlet {
 			try {
 				products = cardModel.search(request.getParameter("query"));
 				request.setAttribute("products", products);
-				for (ProductBean b:products)
-					System.out.println(b.getName() + " Price: " + b.getCost());
+//				for (ProductBean b:products)
+//					System.out.println(b.getName() + " Price: " + b.getCost());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -132,8 +132,8 @@ public class Shop extends HttpServlet {
 		try {
 			products = cardModel.retrieveCards();
 			request.setAttribute("products", products);
-			for (ProductBean b:products)
-				System.out.println(b.getName() + " Price: " + b.getCost());
+//			for (ProductBean b:products)
+//				System.out.println(b.getName() + " Price: " + b.getCost());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
