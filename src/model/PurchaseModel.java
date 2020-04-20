@@ -37,5 +37,9 @@ public class PurchaseModel {
 	public ArrayList<UserPurchasesBean> getPurchasesByUser() throws SQLException {
 		return purchase.purchasesByUser();
 	}
+	
+	public ArrayList<PurchaseHistoryBean> getPurchasesByProductId(int id) throws SQLException {
+		return purchase.getPurchasesByProductId(id);
+	} 
 
 }
