@@ -42,6 +42,23 @@ public class Analytics extends HttpServlet {
 			e.printStackTrace();
 		}
     }
+    
+    private int monthNumberConverter(String month) {
+
+    	if(month.equals("January")) return 1;
+    	else if(month.equals("February")) return 2;
+    	else if(month.equals("March")) return 3;
+    	else if(month.equals("April")) return 4;
+    	else if(month.equals("May")) return 5;
+    	else if(month.equals("June")) return 6;
+    	else if(month.equals("July")) return 7;
+    	else if(month.equals("August")) return 8;
+    	else if(month.equals("September")) return 9;
+    	else if(month.equals("October")) return 10;
+    	else if(month.equals("November")) return 11;
+    	else if(month.equals("December")) return 12;
+    	else return -1;
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -56,16 +73,19 @@ public class Analytics extends HttpServlet {
 				String year = request.getParameter("year");
 				String month = request.getParameter("month");
 				
+				System.out.println("Year: " + year);
+				System.out.println("Month: " + month);
+				
 				if(month == null && year == null) {
 					purchases = purchaseModel.getPurchasesByMonth(3, 2019);
 					request.setAttribute("month", "March");
 				}
 				
 				else if(year == null) {
-					int monthNumber = Integer.parseInt(month);
+					int monthNumber = monthNumberConverter(month);
 					
 					purchases = purchaseModel.getPurchasesByMonth(monthNumber, 2020);
-					request.setAttribute("month", MonthArray[monthNumber]);
+					request.setAttribute("month", month);
 				}
 				
 				else if(month == null) {
@@ -74,10 +94,10 @@ public class Analytics extends HttpServlet {
 				}
 				
 				else {
-					int monthNumber = Integer.parseInt(month);
+					int monthNumber = monthNumberConverter(month);
 					
-					purchases = purchaseModel.getPurchasesByMonth(Integer.parseInt(month), Integer.parseInt(year));
-					request.setAttribute("month", MonthArray[monthNumber]);
+					purchases = purchaseModel.getPurchasesByMonth(monthNumber, Integer.parseInt(year));
+					request.setAttribute("month", month);
 				}
 				
 				request.setAttribute("topTenCards", cards);
@@ -95,6 +115,7 @@ public class Analytics extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
 
