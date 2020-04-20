@@ -6,7 +6,7 @@
   </context-param>
   <context-param>
     <param-name>redirectPath</param-name>
-    <param-value>/EECS4413_Project/</param-value>
+    <param-value>/Card-Shop/</param-value>
   </context-param>
   <error-page>
     <error-code>404</error-code>

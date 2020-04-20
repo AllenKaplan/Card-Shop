@@ -40,7 +40,7 @@ public class PaymentListener implements HttpSessionAttributeListener {
     private void printCardsSold() {
     	System.out.println("THE CARDS SOLD, ACCORDING TO THE LISTENER:");
     	for(Integer id: cardsSold.keySet())
-    		System.out.println(id + ": " + currentCart.get(id));
+    		System.out.println(id + ": " + cardsSold.get(id));
     	System.out.println("END OF THE CARDS SOLD");
     }
 
@@ -113,15 +113,17 @@ public class PaymentListener implements HttpSessionAttributeListener {
     				
     				if(cardsSold.containsKey(id)) {
     					
+    					
     					Integer oldQuantity = cardsSold.get(id);
     					Integer newQuantity = oldQuantity + quantity;
     					
+    					System.out.println(id + " IS AN OLD CARD, SO WE'RE ADDING TO THE QUANTITY OF THE OLD CARD");
     					cardsSold.put(id, newQuantity);
     					
     				}
     				
     				else {
-    					
+    					System.out.println(id + " IS A NEW CARD, SO WE'RE MAKING A NEW KEY");
     					cardsSold.put(id, quantity);
     				}
     					
