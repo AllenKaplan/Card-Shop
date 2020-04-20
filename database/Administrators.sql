@@ -5,7 +5,7 @@ VALUES
 
 INSERT INTO LOGINS
 VALUES
-('terribleDad','boarman');
+('terribleDad','BB397D7CF9DAFE56063D6D96F7C9D0F4');
 
 INSERT INTO ACCOUNTS
 (username,fname,lname,email,address,phone,accounttype)
