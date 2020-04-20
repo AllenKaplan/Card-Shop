@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.CardBean;
 import bean.ProductBean;
 import bean.PurchaseHistoryBean;
+import bean.UserBean;
 import bean.UserPurchasesBean;
 import model.CardModel;
 import model.PurchaseModel;
@@ -65,6 +67,15 @@ public class Analytics extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			// Check if admin, if not go to home
+			UserBean loggedInUser = (UserBean) request.getSession().getAttribute("loggedInUser");
+			if (loggedInUser == null || !loggedInUser.getAccountType().toUpperCase().equals("ADMINISTRATOR")) {
+				ServletContext context = this.getServletContext();
+				String redirectPath = context.getInitParameter("redirectPath");
+				response.sendRedirect(redirectPath + "login");
+				return;
+			}
+			
 			String target = "/analytics.jspx";
 			
 			try {
