@@ -119,6 +119,7 @@ public class Shop extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 		
 		} else if (params.containsKey("checkout") && request.getParameter("checkout") != null) {
+			
 			response.sendRedirect(redirectPath + "payment");
 		} else if (params.containsKey("toCart") && request.getParameter("toCart") != null) {
 			String target = "/cart.jspx";
