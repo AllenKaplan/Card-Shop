@@ -34,8 +34,8 @@
 				<div class="search">
 					
 					<form action="home" method="post">
-						<button type="submit" name="toCart"> Go to cart </button>
-						<input type="text" name="query"></input>
+						<button type="submit" name="toCart" > Go to Cart</button> - ${cart.size()} Unique Card(s)!
+						<input type="text" name="query" style='margin: 0em 1em 0em 2em'></input>
     					<input type="submit" name="search" value="Search" />
 					</form>
 				</div>
