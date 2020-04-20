@@ -21,6 +21,7 @@ body, header{
 .search {
 	margin-top: auto;
 	margin-bottom: auto;
+	color: white;
 }
 
 .body {
@@ -59,6 +60,10 @@ body, header{
 
 .error-star {
  	display: none;
+}
+
+.cart-count {
+	color: white;
 }
 
 
