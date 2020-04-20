@@ -22,6 +22,7 @@ Note that sometimes the Web.xml file can cause exceptions to be thrown when run 
 
 ## File Structure
 ![image](https://user-images.githubusercontent.com/35306396/79798985-c6c53e80-8327-11ea-8148-b5923fd9cb7a.png)
+
 From the image above, we can see that the main java code is separated into 6 packages: 
 - bean - Contains all the beans which hold spcific data
 - controller - Each controller deals with tasks realted to it
