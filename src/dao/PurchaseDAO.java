@@ -2,6 +2,7 @@ package dao;
 
 import bean.PurchaseHistoryBean;
 import bean.UserPurchasesBean;
+import bean.OrderBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,31 @@ public class PurchaseDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Add an order to the database (one for each card being purchased)
+	 * @param order
+	 * @throws SQLException 
+	 */
+	public void createOrder(OrderBean orderBean) throws SQLException {
+		String orderQuery = "INSERT INTO ORDERS (username,itemnumber,itemname,saleprice,quantity,deliveryaddress,datePurchased,datedelivered,status) VALUES (?,?,?,?,?,?,?,?,?)";
+		
+		Connection con = this.dataSource.getConnection();   
+		PreparedStatement order = con.prepareStatement(orderQuery);   
+		order.setString(1, orderBean.getUsername());
+		order.setInt(2, orderBean.getItemNumber());
+		order.setString(3, orderBean.getItemName());
+		order.setDouble(4, orderBean.getSalePrice());
+		order.setInt(5, orderBean.getQuantity());
+		order.setInt(6, orderBean.getDeliveryAddress());
+		order.setString(7, orderBean.getDatePurchased());
+		order.setString(8, orderBean.getDateDelievered());
+		order.setString(9, orderBean.getStatus());		
+		order.executeUpdate();  
+		order.close();
+		con.close();		
+	}
+	
 	
 	/**
 	 * Get purchases on a particular month of the year

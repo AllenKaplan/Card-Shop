@@ -1,7 +1,8 @@
 package bean;
 
 /**
- * Stores information about a purchase
+ * Stores information about a purchase. Each bean holds information about one card item being purchased.
+ * Multiple beans required for purchases of more than 1 card type
  */
 public class OrderBean {
 	private String username;
