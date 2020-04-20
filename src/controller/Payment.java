@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.ServletConfig;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ProductBean;
 import bean.UserBean;
 import model.UserModel;
 
@@ -62,8 +65,12 @@ public class Payment extends HttpServlet {
 		boolean payment = paymentString != null && paymentString.equals("true");
 		
 		UserBean loggedInUser = (UserBean) request.getSession().getAttribute("loggedInUser");
+		Map<ProductBean, Integer> cart = (HashMap<ProductBean, Integer>) request.getSession().getAttribute("cart");
 		
-		if (loggedInUser == null) {
+		if (cart == null) {
+			response.sendRedirect("/EECS4413_Project/login");
+			return;
+		} else if (loggedInUser == null) {
 			// User not logged in. Redirect to login page.
 			response.sendRedirect("/EECS4413_Project/login");
 			return;
