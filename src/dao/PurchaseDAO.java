@@ -117,7 +117,7 @@ public class PurchaseDAO {
 			int number = ordersResult.getInt("itemNumber");
 			String name = ordersResult.getString("itemName");
 			double price = ordersResult.getInt("salePrice");
-			int quantity = ordersResult.getInt("purchases");
+			int quantity = ordersResult.getInt("quantity");
 			purchases.add(new PurchaseHistoryBean(number,name,price,quantity,null)); //null image
 		}
 		orders.close();

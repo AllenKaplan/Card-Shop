@@ -1,7 +1,16 @@
 package model;
 
+import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.transform.stream.StreamResult;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import bean.PurchaseHistoryBean;
 import bean.UserPurchasesBean;
@@ -38,8 +47,22 @@ public class PurchaseModel {
 		return purchase.purchasesByUser();
 	}
 	
-	public ArrayList<PurchaseHistoryBean> getPurchasesByProductId(int id) throws SQLException {
-		return purchase.getPurchasesByProductId(id);
+	public String getPurchasesByProductId(int id) throws SQLException {
+		List<PurchaseHistoryBean> purchaseList = this.purchase.getPurchasesByProductId(id);
+		
+
+		ObjectMapper mapper = new ObjectMapper();
+		// Converting the Object to JSONString
+		String jsonString = "";
+		try {
+			jsonString = mapper.writeValueAsString(purchaseList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(jsonString);
+		
+		
+		return jsonString;
 	} 
 
 }
