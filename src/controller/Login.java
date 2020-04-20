@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.DatatypeConverter;
 
 import bean.UserBean;
 import model.UserModel;
@@ -49,7 +52,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String rawPassword = request.getParameter("password");
 		String loginString = request.getParameter("login");
 		String startRegisterString = request.getParameter("startRegister");
 		String registerString = request.getParameter("register");
@@ -60,12 +63,26 @@ public class Login extends HttpServlet {
 
 		System.out.println(request.getRequestURI());
 		System.out.println(username);
-		System.out.println(password);
+		System.out.println(rawPassword);
 		System.out.println(loginString);
 
 		if (login) {
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
 			try {
+			    // Hash password
+			    MessageDigest md;
+			    String password = "";
+				try {
+					md = MessageDigest.getInstance("MD5");
+					md.update(rawPassword.getBytes());
+				    byte[] digest = md.digest();
+				    password = DatatypeConverter.printHexBinary(digest).toUpperCase();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
+			    
+				System.out.println("Hashed pass: " + password);
+				
 				UserBean loggedInUser = userModel.login(username, password);
 				if (loggedInUser != null) {
 					// On successful login, set accountType
@@ -98,6 +115,20 @@ public class Login extends HttpServlet {
 			// Create account
 			UserModel userModel = (UserModel) this.context.getAttribute("userModel");
 			try {
+				// Hash password
+			    MessageDigest md;
+			    String password = "";
+				try {
+					md = MessageDigest.getInstance("MD5");
+					md.update(rawPassword.getBytes());
+				    byte[] digest = md.digest();
+				    password = DatatypeConverter.printHexBinary(digest).toUpperCase();
+				} catch (NoSuchAlgorithmException e1) {
+					e1.printStackTrace();
+				}
+			    
+				System.out.println("Hashed pass: " + password);
+				
 				userModel.register(username, password, firstName, lastName, address, city, province, postal);
 			} catch (Exception e) {
 				e.printStackTrace();
