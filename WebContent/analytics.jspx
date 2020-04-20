@@ -96,10 +96,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="i" items="${ cards }">
+					<c:forEach var="i" items="${ topTenCards }">
 						<tr>
-							<td>${ i.key() }</td>
-							<td>${ i.value() }</td>
+							<td>${ i.key }</td>
+							<td>${ i.value }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
